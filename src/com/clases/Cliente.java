@@ -16,6 +16,7 @@ public class Cliente extends Persona{
     private String sexo;
     private Integer legajo;
 
+   
     public Cliente(String nombre, String apellido, Integer dni, Integer telefono, String email, String domicilio, String ciudad, String nacionalidad, String sexo, Integer legajo) {
         this.nombre=nombre;
         this.apellido=apellido;

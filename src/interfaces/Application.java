@@ -209,7 +209,6 @@ public class Application extends javax.swing.JFrame {
         panelHabitaciones.removeAll();
         for(Habitacion hab: habitaciones){
             panelHabitaciones.add(new ElementoHabitacion());
-            System.out.println("asdasd");
         }
         panelHabitaciones.revalidate();
         panelHabitaciones.repaint();

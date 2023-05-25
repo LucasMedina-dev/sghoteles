@@ -16,8 +16,6 @@ import java.util.List;
 public class SystemManager {
     private List<Habitacion> habitaciones=new ArrayList<Habitacion>();
     
-    
-    
     public SystemManager(){
         File f = new File("path/habitaciones.dat");
         habitaciones.add(new Habitacion(true, 101));
@@ -35,5 +33,5 @@ public class SystemManager {
     public void setHabitaciones(List<Habitacion> habitaciones) {
         this.habitaciones = habitaciones;
     }
-    
+        
 }
