@@ -4,6 +4,8 @@
  */
 package com.clases;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author Lucas
@@ -12,15 +14,15 @@ public class Factura {
     private Integer nroFac;
     private Integer monto;
     private String tipoFac;
-    private String fecha;
+    private LocalDateTime fecha;
     private String comentario;
     private String usuario;
 
-    public Factura(Integer nroFac, Integer monto, String tipoFac, String fecha, String comentario, String usuario) {
+    public Factura(Integer nroFac, Integer monto, String tipoFac, String comentario, String usuario) {
         this.nroFac = nroFac;
         this.monto = monto;
         this.tipoFac = tipoFac;
-        this.fecha = fecha;
+        this.fecha = LocalDateTime.now();
         this.comentario = comentario;
         this.usuario = usuario;
     }
@@ -49,13 +51,15 @@ public class Factura {
         this.tipoFac = tipoFac;
     }
 
-    public String getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
+
+   
 
     public String getComentario() {
         return comentario;

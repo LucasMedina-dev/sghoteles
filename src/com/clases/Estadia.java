@@ -4,6 +4,7 @@
  */
 package com.clases;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -13,20 +14,20 @@ import java.util.HashMap;
  */
 public class Estadia {
     private Cliente cliente;
-    private String checkIn;
-    private String checkOut;
+    private LocalDateTime checkIn;
+    private LocalDateTime checkOut;
     private Integer cochera;
     private ArrayList<Factura> pagos;
     private ArrayList<Cargo> cargos;
     private String usuario;
 
-    public Estadia(Cliente cliente, String checkIn, String checkOut, Integer cochera, ArrayList<Factura> pagos, ArrayList<Cargo> cargos, String usuario) {
+    public Estadia(Cliente cliente, LocalDateTime checkIn, LocalDateTime checkOut, Integer cochera, String usuario) {
         this.cliente = cliente;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.cochera = cochera;
-        this.pagos = pagos;
-        this.cargos = cargos;
+        this.pagos = new ArrayList<>();
+        this.cargos = new ArrayList<>();
         this.usuario = usuario;
     }
 
@@ -38,21 +39,23 @@ public class Estadia {
         this.cliente = cliente;
     }
 
-    public String getCheckIn() {
+    public LocalDateTime getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(String checkIn) {
+    public void setCheckIn(LocalDateTime checkIn) {
         this.checkIn = checkIn;
     }
 
-    public String getCheckOut() {
+    public LocalDateTime getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(String checkOut) {
+    public void setCheckOut(LocalDateTime checkOut) {
         this.checkOut = checkOut;
     }
+
+   
 
     public Integer getCochera() {
         return cochera;
