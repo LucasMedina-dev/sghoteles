@@ -27,22 +27,15 @@ public class Application extends javax.swing.JFrame {
     private PanelRecepcion pRecepcion= new PanelRecepcion();
     private PanelFacturacion pFacturacion= new PanelFacturacion();
     private PanelReservas pReservas= new PanelReservas();
-    private final int leftPanelWidth;
     
     
     public Application() {
         initComponents();
         
-        //Acomodado de aplicacion en centro de pantalla
-        Dimension screenData=Toolkit.getDefaultToolkit().getScreenSize();
-        int centerX=(int)screenData.getWidth()/2-(this.getWidth()/2);
-        int centerY=(int)screenData.getHeight()/2-(this.getHeight()/2);
-        this.setLocation(centerX, centerY);
-        this.leftPanelWidth=leftPanel.getWidth();
+        SystemManager.centerApp(this);
         
         // Inicializado de systemManager y cargado de habitaciones
-        SystemManager systemManager=new SystemManager();
-        cargarHab(systemManager.getHabitaciones());
+        cargarHab(SystemManager.getHabitaciones());
         
     }
 
@@ -84,7 +77,6 @@ public class Application extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 700));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 700));
 
@@ -208,7 +200,7 @@ public class Application extends javax.swing.JFrame {
     public void cargarHab(List<Habitacion> habitaciones){
         panelHabitaciones.removeAll();
         for(Habitacion hab: habitaciones){
-            panelHabitaciones.add(new ElementoHabitacion());
+            panelHabitaciones.add(new ElementoHabitacion(hab));
         }
         panelHabitaciones.revalidate();
         panelHabitaciones.repaint();
@@ -225,9 +217,6 @@ public class Application extends javax.swing.JFrame {
     private javax.swing.JButton facturacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel leftPanel;

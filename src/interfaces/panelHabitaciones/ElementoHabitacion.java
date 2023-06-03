@@ -4,19 +4,41 @@
  */
 package interfaces.panelHabitaciones;
 
+import com.clases.Estado;
+import com.clases.Habitacion;
+import java.awt.Color;
+import java.time.LocalDate;
+
 /**
  *
  * @author Lucas
  */
 public class ElementoHabitacion extends javax.swing.JPanel {
 
-    /**
-     * Creates new form elementoHabitacion
-     */
-    public ElementoHabitacion() {
+    public ElementoHabitacion(Habitacion hab) {
         initComponents();
+        habNumber.setText(hab.getNumHab());
+        setBackgroundStatus(hab);
+        setChecks(hab);
     }
-
+    private void setBackgroundStatus(Habitacion hab){
+        if(hab.getEstado()==Estado.ocupada){
+            habBackground.setBackground(Color.red);
+        }else if(hab.getEstado()==Estado.mantenimiento){
+            habBackground.setBackground(Color.gray);
+        }else{
+            habBackground.setBackground(Color.green);
+        }
+    }
+    private void setChecks(Habitacion hab){
+        LocalDate nextIn=hab.getNextIn();
+        inData.setText(nextIn.toString());
+        if(hab.getEstadia()!=null){
+            outData.setText(hab.getEstadia().getCheckOut());
+        }else{
+            outData.setText("Hab Libre");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,37 +48,42 @@ public class ElementoHabitacion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        habBackground = new javax.swing.JPanel();
+        habNumber = new javax.swing.JLabel();
+        inData = new javax.swing.JLabel();
+        outData = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(75, 100));
 
-        jPanel1.setBackground(java.awt.Color.black);
+        habBackground.setBackground(java.awt.Color.white);
+        habBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 75, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
-        );
+        habNumber.setText("Hab");
+        habBackground.add(habNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+
+        inData.setText("CheckIn");
+        habBackground.add(inData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
+
+        outData.setText("CheckOut");
+        habBackground.add(outData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(habBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(habBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel habBackground;
+    private javax.swing.JLabel habNumber;
+    private javax.swing.JLabel inData;
+    private javax.swing.JLabel outData;
     // End of variables declaration//GEN-END:variables
 }

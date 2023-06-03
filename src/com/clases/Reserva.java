@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.clases;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.*;
 /**
  *
@@ -12,20 +12,20 @@ import java.util.*;
 
 public class Reserva{
 
-    private String id;
-private Integer habitacion;
-private LocalDateTime fechaEntrada;
-private Date fechaSalida;
-private String nombre;
-private String apellido;
-private Integer telefono;
+    private Integer id;
+    private String habitacion;
+    private LocalDate fechaEntrada;
+    private LocalDate fechaSalida;
+    private String nombre;
+    private String apellido;
+    private Integer telefono;
 
     public Reserva() {
     }
     
    
     
-    public Reserva(String id, Integer habitacion, LocalDateTime fechaEntrada, Date fechaSalida, String nombre, String apellido, Integer telefono) {
+    public Reserva(Integer id, String habitacion, LocalDate fechaEntrada, LocalDate fechaSalida, String nombre, String apellido, Integer telefono) {
         this.id = id;
         this.habitacion = habitacion;
         this.fechaEntrada = fechaEntrada;
@@ -35,35 +35,35 @@ private Integer telefono;
         this.telefono = telefono;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Integer getHabitacion() {
+    public String getHabitacion() {
         return habitacion;
     }
 
-    public void setHabitacion(Integer habitacion) {
+    public void setHabitacion(String habitacion) {
         this.habitacion = habitacion;
     }
 
-    public LocalDateTime getFechaEntrada() {
+    public LocalDate getFechaEntrada() {
         return fechaEntrada;
     }
 
-    public void setFechaEntrada(LocalDateTime fechaEntrada) {
+    public void setFechaEntrada(LocalDate fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 
-    public Date getFechaSalida() {
+    public LocalDate getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(Date fechaSalida) {
+    public void setFechaSalida(LocalDate fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 

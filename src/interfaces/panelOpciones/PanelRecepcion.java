@@ -4,6 +4,9 @@
  */
 package interfaces.panelOpciones;
 
+import com.clases.SystemManager;
+import interfaces.recepcion.ConsultaReserva;
+
 /**
  *
  * @author Lucas
@@ -15,6 +18,7 @@ public class PanelRecepcion extends javax.swing.JPanel {
      */
     public PanelRecepcion() {
         initComponents();
+        
     }
 
     /**
@@ -106,7 +110,10 @@ public class PanelRecepcion extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void recepcionIngresarPaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recepcionIngresarPaxActionPerformed
-        // TODO add your handling code here:
+        ConsultaReserva res= new ConsultaReserva();
+        res.dispose();
+        
+        res.setVisible(true);
     }//GEN-LAST:event_recepcionIngresarPaxActionPerformed
 
     private void recepcionEgresarPaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recepcionEgresarPaxActionPerformed

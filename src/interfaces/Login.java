@@ -4,6 +4,7 @@
  */
 package interfaces;
 
+import com.clases.SystemManager;
 import interfaces.Application;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,6 +29,7 @@ public class Login extends javax.swing.JFrame {
         int centerX=(int)screenData.getWidth()/2-(this.getWidth()/2);
         int centerY=(int)screenData.getHeight()/2-(this.getHeight()/2);
         this.setLocation(centerX, centerY);
+        
     }
 
     /**
@@ -216,9 +218,11 @@ public class Login extends javax.swing.JFrame {
     private void enterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_enterMouseClicked
         userTextEntered=userText.getText();
         userPassEntered=String.valueOf(passText.getPassword());
-        Application app= new Application();
-        this.setVisible(false);
-        app.setVisible(true);
+        boolean validation=true;
+        if(validation){
+            this.setVisible(false);
+            SystemManager.openApplication();
+        }
     }//GEN-LAST:event_enterMouseClicked
 
     private void userTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userTextKeyTyped

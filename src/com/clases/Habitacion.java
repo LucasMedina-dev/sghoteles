@@ -4,18 +4,21 @@
  */
 package com.clases;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Lucas
  */
 public class Habitacion {
     private boolean tipoHab; //true especial, false estandar, sino string
-    private Integer numHab;
+    private String numHab;
     private Integer montoDiario;
     private Estado estado;
     private Estadia estadia;
+    private LocalDate nextIn;
 
-    public Habitacion(boolean tipoHab, Integer numHab) {
+    public Habitacion(boolean tipoHab, String numHab, LocalDate resNextIn) {
         this.tipoHab = tipoHab;
         this.numHab = numHab;
         if(tipoHab==false){
@@ -25,8 +28,9 @@ public class Habitacion {
         }
         this.estado = Estado.libre;
         this.estadia = null;
+        this.nextIn= resNextIn;
     }
-
+    
     public boolean isTipoHab() {
         return tipoHab;
     }
@@ -35,11 +39,11 @@ public class Habitacion {
         this.tipoHab = tipoHab;
     }
 
-    public Integer getNumHab() {
+    public String getNumHab() {
         return numHab;
     }
 
-    public void setNumHab(Integer numHab) {
+    public void setNumHab(String numHab) {
         this.numHab = numHab;
     }
 
@@ -67,5 +71,9 @@ public class Habitacion {
         this.estadia = estadia;
     }
 
+    public LocalDate getNextIn() {
+        return nextIn;
+    }
+    
     
 }
