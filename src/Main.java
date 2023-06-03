@@ -94,7 +94,7 @@ public class Main {
         mapa.put(cliente.getDni(), cliente);
     }
 
-    public static Habitacion seleccionarHabitacion(List<Habitacion> h, int num) throws IllegalArgumentException {
+    public static Habitacion seleccionarHabitacion(List<Habitacion> h, int num) {
         Habitacion habitacionBuscada = null;
 
         for (Habitacion habitacion : h) {
