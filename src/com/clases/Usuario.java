@@ -12,13 +12,22 @@ public class Usuario{
     
     private String usuario;
     private String password;
-    HashMap<String,String> login;
 
-    public Usuario(String usuario, String password, HashMap<String, String> login) {
+    public Usuario() {
+    }
+
+    
+    public Usuario(String usuario, String password) {
         this.usuario = usuario;
         this.password = password;
-        this.login = login;
     }
-   
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }    
     
 }

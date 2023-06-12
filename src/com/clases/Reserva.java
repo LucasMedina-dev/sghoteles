@@ -14,20 +14,22 @@ public class Reserva{
 
     private Integer id;
     private String habitacion;
-    private LocalDate fechaEntrada;
-    private LocalDate fechaSalida;
+    private String tipoHab;
+    private Date fechaEntrada;
+    private Date fechaSalida;
     private String nombre;
     private String apellido;
-    private Integer telefono;
+    private String telefono;
 
     public Reserva() {
     }
     
    
     
-    public Reserva(Integer id, String habitacion, LocalDate fechaEntrada, LocalDate fechaSalida, String nombre, String apellido, Integer telefono) {
+    public Reserva(Integer id, String habitacion, String tipoHab, Date fechaEntrada, Date fechaSalida, String nombre, String apellido, String telefono) {
         this.id = id;
         this.habitacion = habitacion;
+        this.tipoHab = tipoHab;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.nombre = nombre;
@@ -51,19 +53,19 @@ public class Reserva{
         this.habitacion = habitacion;
     }
 
-    public LocalDate getFechaEntrada() {
+    public Date getFechaEntrada() {
         return fechaEntrada;
     }
 
-    public void setFechaEntrada(LocalDate fechaEntrada) {
+    public void setFechaEntrada(Date fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 
-    public LocalDate getFechaSalida() {
+    public Date getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(LocalDate fechaSalida) {
+    public void setFechaSalida(Date fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
@@ -83,12 +85,20 @@ public class Reserva{
         this.apellido = apellido;
     }
 
-    public Integer getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getTipoHab() {
+        return tipoHab;
+    }
+
+    public void setTipoHab(String tipoHab) {
+        this.tipoHab = tipoHab;
     }
 
     @Override

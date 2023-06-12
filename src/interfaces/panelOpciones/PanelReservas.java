@@ -4,6 +4,10 @@
  */
 package interfaces.panelOpciones;
 
+import interfaces.recepcion.CheckIn;
+import interfaces.reservas.CrearReservaFrame;
+import interfaces.reservas.ModificarRerservaFrame;
+
 /**
  *
  * @author Lucas
@@ -97,11 +101,15 @@ public class PanelReservas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reservasCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasCrearActionPerformed
-        // TODO add your handling code here:
+        CrearReservaFrame frame= new CrearReservaFrame();
+        frame.dispose();
+        frame.setVisible(true);
     }//GEN-LAST:event_reservasCrearActionPerformed
 
     private void reservasModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasModificarActionPerformed
-        // TODO add your handling code here:
+        ModificarRerservaFrame frame= new ModificarRerservaFrame();
+        frame.dispose();
+        frame.setVisible(true);
     }//GEN-LAST:event_reservasModificarActionPerformed
 
     private void reservasListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasListadoActionPerformed

@@ -9,6 +9,7 @@ import interfaces.panelOpciones.PanelRecepcion;
 import interfaces.panelOpciones.PanelReservas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;
@@ -29,7 +30,7 @@ public class Application extends javax.swing.JFrame {
     private PanelReservas pReservas= new PanelReservas();
     
     
-    public Application() {
+    public Application() throws IOException {
         initComponents();
         
         SystemManager.centerApp(this);
@@ -196,6 +197,12 @@ public class Application extends javax.swing.JFrame {
         panelOpciones.repaint();
         panelOpciones.setVisible(false);
         panelOpciones.setVisible(true);
+    }
+    
+    public void leerHabJson(){
+        
+        
+        
     }
     public void cargarHab(List<Habitacion> habitaciones){
         panelHabitaciones.removeAll();

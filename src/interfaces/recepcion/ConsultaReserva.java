@@ -18,6 +18,7 @@ public class ConsultaReserva extends javax.swing.JFrame {
     public ConsultaReserva() {
         initComponents();
         SystemManager.centerApp(this);
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -30,19 +31,19 @@ public class ConsultaReserva extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        nroReservaText = new javax.swing.JFormattedTextField();
+        nroReserva = new javax.swing.JFormattedTextField();
         conReserva = new javax.swing.JButton();
         sinReserva = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
 
-        nroReservaText.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        nroReservaText.setText("Ingrese nro de reserva");
-        nroReservaText.addActionListener(new java.awt.event.ActionListener() {
+        nroReserva.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        nroReserva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nroReservaTextActionPerformed(evt);
+                nroReservaActionPerformed(evt);
             }
         });
 
@@ -52,25 +53,44 @@ public class ConsultaReserva extends javax.swing.JFrame {
                 conReservaMouseClicked(evt);
             }
         });
+        conReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                conReservaActionPerformed(evt);
+            }
+        });
 
         sinReserva.setText("Sin reserva");
+        sinReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sinReservaActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("NUMERO DE RESERVA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(nroReservaText)
+            .addComponent(nroReserva)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(conReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sinReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(nroReservaText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nroReserva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(conReserva)
@@ -92,13 +112,33 @@ public class ConsultaReserva extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nroReservaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nroReservaTextActionPerformed
+    private void nroReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nroReservaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nroReservaTextActionPerformed
+    }//GEN-LAST:event_nroReservaActionPerformed
 
     private void conReservaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_conReservaMouseClicked
         
     }//GEN-LAST:event_conReservaMouseClicked
+
+    private void conReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_conReservaActionPerformed
+        CheckIn frame=null;
+        int numeroReserva;
+        try{
+            numeroReserva=Integer.parseInt(nroReserva.getText());
+            frame= new CheckIn(numeroReserva); // Se le pasa por parametro el numero de reserva
+            if(frame!=null){
+            frame.setVisible(true);
+        }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_conReservaActionPerformed
+
+    private void sinReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sinReservaActionPerformed
+        CheckIn checkIn= new CheckIn();
+        checkIn.setVisible(true);
+        
+    }//GEN-LAST:event_sinReservaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,8 +178,9 @@ public class ConsultaReserva extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton conReserva;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JFormattedTextField nroReservaText;
+    private javax.swing.JFormattedTextField nroReserva;
     private javax.swing.JButton sinReserva;
     // End of variables declaration//GEN-END:variables
 }

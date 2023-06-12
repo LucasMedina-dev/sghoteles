@@ -5,6 +5,7 @@
 package interfaces.panelOpciones;
 
 import com.clases.SystemManager;
+import interfaces.recepcion.CheckOut;
 import interfaces.recepcion.ConsultaReserva;
 
 /**
@@ -117,7 +118,9 @@ public class PanelRecepcion extends javax.swing.JPanel {
     }//GEN-LAST:event_recepcionIngresarPaxActionPerformed
 
     private void recepcionEgresarPaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recepcionEgresarPaxActionPerformed
-        // TODO add your handling code here:
+        CheckOut checkOut= new CheckOut();
+        checkOut.dispose();
+        checkOut.setVisible(true);
     }//GEN-LAST:event_recepcionEgresarPaxActionPerformed
 
     private void recepcionModEgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recepcionModEgresoActionPerformed

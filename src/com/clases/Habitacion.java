@@ -5,37 +5,43 @@
 package com.clases;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  *
  * @author Lucas
  */
+
 public class Habitacion {
-    private boolean tipoHab; //true especial, false estandar, sino string
+    private String tipoHab; //true especial, false estandar, sino string
     private String numHab;
     private Integer montoDiario;
     private Estado estado;
     private Estadia estadia;
-    private LocalDate nextIn;
+    private Date nextIn;
 
-    public Habitacion(boolean tipoHab, String numHab, LocalDate resNextIn) {
+    public Habitacion() {
+    }
+
+    
+    public Habitacion(String tipoHab, String numHab) {
         this.tipoHab = tipoHab;
         this.numHab = numHab;
-        if(tipoHab==false){
+        if(tipoHab.equals("Estandar")){
             this.montoDiario=1000;
         }else{
             this.montoDiario=2000;
         }
         this.estado = Estado.libre;
         this.estadia = null;
-        this.nextIn= resNextIn;
+        this.nextIn= null;
     }
     
-    public boolean isTipoHab() {
+    public String isTipoHab() {
         return tipoHab;
     }
 
-    public void setTipoHab(boolean tipoHab) {
+    public void setTipoHab(String tipoHab) {
         this.tipoHab = tipoHab;
     }
 
@@ -70,9 +76,13 @@ public class Habitacion {
     public void setEstadia(Estadia estadia) {
         this.estadia = estadia;
     }
-
-    public LocalDate getNextIn() {
+    
+    public Date getNextIn() {
         return nextIn;
+    }
+
+    public void setNextIn(Date nextIn) {
+        this.nextIn = nextIn;
     }
     
     

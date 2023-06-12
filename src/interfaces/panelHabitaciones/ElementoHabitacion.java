@@ -8,6 +8,9 @@ import com.clases.Estado;
 import com.clases.Habitacion;
 import java.awt.Color;
 import java.time.LocalDate;
+import java.util.Date;
+
+
 
 /**
  *
@@ -31,8 +34,11 @@ public class ElementoHabitacion extends javax.swing.JPanel {
         }
     }
     private void setChecks(Habitacion hab){
-        LocalDate nextIn=hab.getNextIn();
-        inData.setText(nextIn.toString());
+        Date nextIn=hab.getNextIn();
+        if(nextIn!=null){
+            inData.setText(nextIn.toString());
+        }
+        
         if(hab.getEstadia()!=null){
             outData.setText(hab.getEstadia().getCheckOut());
         }else{
@@ -63,8 +69,6 @@ public class ElementoHabitacion extends javax.swing.JPanel {
 
         inData.setText("CheckIn");
         habBackground.add(inData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
-
-        outData.setText("CheckOut");
         habBackground.add(outData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
