@@ -4,15 +4,17 @@
  */
 package com.clases;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Lucas
  */
-public abstract class  Persona {
+public abstract class  Persona implements Serializable{
     String nombre;
     String apellido;
-    Integer dni;
-    Integer telefono;
+    String dni;
+    String telefono;
     
     
 }

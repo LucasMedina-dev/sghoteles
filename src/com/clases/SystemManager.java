@@ -17,14 +17,22 @@ import javax.swing.JFrame;
 
 //FILE
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Calendar;
 import java.util.Date;
+
+//watcher
+import java.io.IOException;
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
+
+
+
+
+
+
 /**
  *
  * @author Lucas
@@ -37,6 +45,52 @@ public class SystemManager {
     public SystemManager(){
         
         
+    }
+    public static void ocuparHabitacion(Estadia estadia, String nroHab){
+        ArrayList<Habitacion> habitaciones;
+        
+        try{
+            habitaciones=leerJson("src/json/habitaciones.json", Habitacion.class);
+            for(Habitacion h : habitaciones){
+                if(h.getNumHab().equals(nroHab) && h.getEstado()==Estado.libre){
+                    System.out.println("");
+                    h.setEstadia(estadia);
+                    h.setEstado(Estado.ocupada);
+                    persistirLista(habitaciones, "src/json/habitaciones.json");
+                    System.out.println("hab encontrada");
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+    }
+    public static void crearCliente(Cliente cliente){
+        ArrayList<Cliente> clientes= new ArrayList<>();
+        boolean existe=false;
+        try{
+            try{
+                clientes=leerJson("src/json/clientes.json", Cliente.class);
+                for(Cliente c : clientes){
+                    if(cliente.getDni().equals(c.getDni())){
+                        existe=true;
+                        c=cliente; // se actualiza si existe
+                    }
+                }
+            }catch(Exception e){
+                persistirLista(clientes, "src/json/clientes.json");
+            }
+            if(!existe){
+                clientes.add(cliente); // se agrega si no existe
+                try{
+                    persistirLista(clientes, "src/json/clientes.json");
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     public static void crearReserva(Reserva r) throws IllegalArgumentException, JsonProcessingException { ///dividir en dos
         boolean hayConflictos = false;
@@ -66,7 +120,7 @@ public class SystemManager {
             System.out.println("Error:" + e.getMessage());
         }
     }
-    private static <T> void persistirLista(ArrayList<T> lista, String direccion){
+    public static <T> void persistirLista(ArrayList<T> lista, String direccion){
         try{
             // Crear una instancia de ObjectMapper
             ObjectMapper objectMapper = new ObjectMapper();
@@ -118,20 +172,13 @@ public class SystemManager {
         return nextInData;
     }
     private static ArrayList<Reserva> getReservas() {
-        ArrayList<Reserva> reservasArray = new ArrayList<>();
-
+        ArrayList<Reserva> reservas= new ArrayList<>();
         try {
-            ObjectMapper objectMapper = new ObjectMapper();
-
-            // Leer el archivo JSON
-            File file = new File("src/json/reserva.json");
-
-            // Convertir el archivo JSON a un array de objetos Reserva
-             reservasArray = objectMapper.readValue(file, new TypeReference<ArrayList<Reserva>>(){});
+             reservas= leerJson("src/json/reserva.json", Reserva.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return reservasArray;
+        return reservas;
     }
     
     public static void openLogin(){
@@ -144,10 +191,14 @@ public class SystemManager {
     }
     
     public static void openApplication() throws IOException{
-        Application app= new Application();
-        app.dispose();
-        app.setSize(800,700);
-        app.setVisible(true);
+        try{
+            Application app= new Application();
+            app.dispose();
+            app.setSize(800,700);
+            app.setVisible(true);
+        }catch(IOException e){
+            throw e;
+        }
         
     }
     
@@ -192,14 +243,32 @@ public class SystemManager {
     }
     public static <T> ArrayList<T> leerJson(String filePath, Class<T> clase) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        Path data= Path.of(filePath);
-        String json= Files.readString(data);
+        ArrayList<T> list = new ArrayList<>();
+        File file= new File(filePath);
+        try{
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            Path data= Path.of(filePath);
+            String json= Files.readString(data);
 
-        ArrayList<T> list = jsonToArrayList(json, clase);
+            list = jsonToArrayList(json, clase);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         return list;
     }
     public static <T> ArrayList<T> jsonToArrayList(String json, Class<T> clazz) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, clazz));
+        ArrayList<T> lista=objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, clazz));
+        if(lista.isEmpty()){
+            lista= new ArrayList<T>();
+        }
+        return lista;
+    }
+    public static LocalDate toLocalDate(Date dateToConvert) {
+        return dateToConvert.toInstant()
+          .atZone(ZoneId.systemDefault())
+          .toLocalDate();
     }
 }

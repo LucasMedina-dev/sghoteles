@@ -235,7 +235,11 @@ public class Login extends javax.swing.JFrame {
         }
         if(validacion){
             this.setVisible(false);
-            SystemManager.openApplication();
+            try {
+                SystemManager.openApplication();
+            } catch (IOException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_enterMouseClicked
 

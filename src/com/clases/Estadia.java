@@ -4,29 +4,30 @@
  */
 package com.clases;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 
 /**
  *
  * @author Lucas
  */
-public class Estadia {
+public class Estadia implements Serializable{
     private Cliente cliente;
-    private String checkIn;
-    private String checkOut;
-    private Integer cochera;
+    private Date checkIn;
+    private Date checkOut;
     private ArrayList<Factura> pagos;
     private ArrayList<Cargo> cargos;
     private String usuario;
-
-    public Estadia(Cliente cliente, String checkIn, String checkOut, Integer cochera, ArrayList<Factura> pagos, ArrayList<Cargo> cargos, String usuario) {
+    public Estadia(){
+        
+    }
+    public Estadia(Cliente cliente, Date checkIn, Date checkOut, String usuario) {
         this.cliente = cliente;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        this.cochera = cochera;
-        this.pagos = pagos;
-        this.cargos = cargos;
+        this.pagos = null;
+        this.cargos = null;
         this.usuario = usuario;
     }
 
@@ -38,28 +39,20 @@ public class Estadia {
         this.cliente = cliente;
     }
 
-    public String getCheckIn() {
+    public Date getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(String checkIn) {
+    public void setCheckIn(Date checkIn) {
         this.checkIn = checkIn;
     }
 
-    public String getCheckOut() {
+    public Date getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(String checkOut) {
+    public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
-    }
-
-    public Integer getCochera() {
-        return cochera;
-    }
-
-    public void setCochera(Integer cochera) {
-        this.cochera = cochera;
     }
 
     public ArrayList<Factura> getPagos() {

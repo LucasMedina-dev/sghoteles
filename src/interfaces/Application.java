@@ -9,9 +9,22 @@ import interfaces.panelOpciones.PanelRecepcion;
 import interfaces.panelOpciones.PanelReservas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
+import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
+import java.nio.file.WatchEvent;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /*
@@ -30,14 +43,11 @@ public class Application extends javax.swing.JFrame {
     private PanelReservas pReservas= new PanelReservas();
     
     
-    public Application() throws IOException {
+    public Application() throws IOException {     
         initComponents();
+        SystemManager.centerApp(this);  
         
-        SystemManager.centerApp(this);
-        
-        // Inicializado de systemManager y cargado de habitaciones
         cargarHab(SystemManager.getHabitaciones());
-        
     }
 
     /**
@@ -61,6 +71,7 @@ public class Application extends javax.swing.JFrame {
         cerrarSesion = new javax.swing.JButton();
         panelOpciones = new javax.swing.JPanel();
         jSeparator2 = new javax.swing.JSeparator();
+        jButton1 = new javax.swing.JButton();
         panelHabitaciones = new javax.swing.JPanel();
 
         jPanel2.setBackground(java.awt.Color.black);
@@ -78,6 +89,7 @@ public class Application extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(800, 700));
         setResizable(false);
         setSize(new java.awt.Dimension(800, 700));
 
@@ -132,7 +144,7 @@ public class Application extends javax.swing.JFrame {
         leftPanel.add(administracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 144, 200, -1));
 
         cerrarSesion.setText("Cerrar sesion");
-        leftPanel.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 670, 200, -1));
+        leftPanel.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 200, -1));
 
         panelOpciones.setBackground(new java.awt.Color(80, 105, 140));
         panelOpciones.setPreferredSize(new java.awt.Dimension(200, 300));
@@ -151,6 +163,14 @@ public class Application extends javax.swing.JFrame {
         leftPanel.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 209, 200, -1));
         leftPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 185, 200, 18));
 
+        jButton1.setText("Recargar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        leftPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 580, -1, -1));
+
         background.add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         panelHabitaciones.setBackground(java.awt.Color.gray);
@@ -162,11 +182,11 @@ public class Application extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -188,6 +208,14 @@ public class Application extends javax.swing.JFrame {
         mostrarPanel(pRecepcion);
     }//GEN-LAST:event_mostrarRecepcion
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            cargarHab(SystemManager.getHabitaciones());
+        } catch (IOException ex) {
+            Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     private void mostrarPanel(JPanel panel){
         panelOpciones.removeAll();
         panel.setSize(200,300);
@@ -199,11 +227,6 @@ public class Application extends javax.swing.JFrame {
         panelOpciones.setVisible(true);
     }
     
-    public void leerHabJson(){
-        
-        
-        
-    }
     public void cargarHab(List<Habitacion> habitaciones){
         panelHabitaciones.removeAll();
         for(Habitacion hab: habitaciones){
@@ -213,6 +236,45 @@ public class Application extends javax.swing.JFrame {
         panelHabitaciones.repaint();
         panelHabitaciones.setVisible(false);
         panelHabitaciones.setVisible(true);
+        //watcher("src/json/habitaciones.json");
+    }
+    public void watcher(String archivo){
+        try (WatchService ws = FileSystems.getDefault().newWatchService()) {
+            // carpeta que deseamos monitorear    
+            Path dirToWatch = Paths.get("src/json");
+
+            // eventos que deseamos que nos envien notificaciones
+            dirToWatch.register(ws, ENTRY_CREATE, ENTRY_MODIFY, ENTRY_DELETE);
+            System.out.println("Watching " + dirToWatch + " for events.");
+            
+            while (true) {
+                // obtener el key
+                WatchKey key = ws.take();
+                
+                // procesar los eventos ocurridos
+                for (WatchEvent<?> event : key.pollEvents()) {
+                    WatchEvent.Kind<?> eventKind = event.kind();
+                    if (eventKind == OVERFLOW) {
+                        System.out.println("Event overflow occurred");
+                        continue;
+                    }
+                    
+                    // obtener informacion del evento ocurrido
+                    WatchEvent<Path> currEvent = (WatchEvent<Path>) event;
+                    Path dirEntry = currEvent.context();
+                    System.out.println("algo ha pasado");
+                    panelHabitaciones.repaint();
+                }
+                
+                // resetear el key
+                boolean isKeyValid = key.reset();
+                if (!isKeyValid) {
+                    break;
+                }
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     /**
      * @param args the command line arguments
@@ -222,6 +284,7 @@ public class Application extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JButton cerrarSesion;
     private javax.swing.JButton facturacion;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;

@@ -4,9 +4,19 @@
  */
 package interfaces.panelOpciones;
 
+import com.clases.Reserva;
+import com.clases.SystemManager;
 import interfaces.recepcion.CheckIn;
+import interfaces.reservas.BorrarReserva;
 import interfaces.reservas.CrearReservaFrame;
+import interfaces.reservas.LimpiarReservas;
 import interfaces.reservas.ModificarRerservaFrame;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
 /**
  *
@@ -34,8 +44,9 @@ public class PanelReservas extends javax.swing.JPanel {
         reservasCrear = new javax.swing.JButton();
         reservasModificar = new javax.swing.JButton();
         reservasCancelar = new javax.swing.JButton();
-        reservasListado = new javax.swing.JButton();
+        reservasNoShow = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        reservasListado1 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -56,11 +67,16 @@ public class PanelReservas extends javax.swing.JPanel {
         });
 
         reservasCancelar.setText("Cancelar reserva");
-
-        reservasListado.setText("Listado de reservas");
-        reservasListado.addActionListener(new java.awt.event.ActionListener() {
+        reservasCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reservasListadoActionPerformed(evt);
+                reservasCancelarActionPerformed(evt);
+            }
+        });
+
+        reservasNoShow.setText("Limpiar reservas No-Show");
+        reservasNoShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservasNoShowActionPerformed(evt);
             }
         });
 
@@ -69,17 +85,25 @@ public class PanelReservas extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("RESERVAS");
 
+        reservasListado1.setText("Listado de reservas");
+        reservasListado1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reservasListado1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelReservasLayout = new javax.swing.GroupLayout(panelReservas);
         panelReservas.setLayout(panelReservasLayout);
         panelReservasLayout.setHorizontalGroup(
             panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelReservasLayout.createSequentialGroup()
                 .addGroup(panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(reservasListado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(reservasNoShow, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(reservasCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(reservasModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(reservasCrear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(reservasListado1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                 .addGap(0, 116, Short.MAX_VALUE))
         );
         panelReservasLayout.setVerticalGroup(
@@ -93,8 +117,10 @@ public class PanelReservas extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reservasCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reservasListado)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addComponent(reservasNoShow)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(reservasListado1)
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         add(panelReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -112,9 +138,21 @@ public class PanelReservas extends javax.swing.JPanel {
         frame.setVisible(true);
     }//GEN-LAST:event_reservasModificarActionPerformed
 
-    private void reservasListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasListadoActionPerformed
+    private void reservasNoShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasNoShowActionPerformed
+        LimpiarReservas frame= new LimpiarReservas();
+        frame.setVisible(true);
+    }//GEN-LAST:event_reservasNoShowActionPerformed
+    
+    
+    
+    private void reservasCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasCancelarActionPerformed
+        BorrarReserva frame= new BorrarReserva();
+        frame.setVisible(true);
+    }//GEN-LAST:event_reservasCancelarActionPerformed
+
+    private void reservasListado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasListado1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_reservasListadoActionPerformed
+    }//GEN-LAST:event_reservasListado1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -122,7 +160,8 @@ public class PanelReservas extends javax.swing.JPanel {
     private javax.swing.JPanel panelReservas;
     private javax.swing.JButton reservasCancelar;
     private javax.swing.JButton reservasCrear;
-    private javax.swing.JButton reservasListado;
+    private javax.swing.JButton reservasListado1;
     private javax.swing.JButton reservasModificar;
+    private javax.swing.JButton reservasNoShow;
     // End of variables declaration//GEN-END:variables
 }

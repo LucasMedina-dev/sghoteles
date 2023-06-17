@@ -4,8 +4,13 @@
  */
 package interfaces.recepcion;
 
+import com.clases.Cliente;
+import com.clases.Estadia;
 import com.clases.Reserva;
 import com.clases.SystemManager;
+import interfaces.Application;
+import interfaces.alertas.Alerta;
+import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -19,13 +24,16 @@ public class CheckIn extends javax.swing.JFrame {
     /**
      * Creates new form crearReserva
      */
+    private Reserva res;
     public CheckIn(Integer nroRes) {
-        System.out.println(nroRes);
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Operacion para cerrar        
         SystemManager.centerApp(this);
         Reserva res=SystemManager.buscarReserva(nroRes);
         setReserva(res);
+        this.setRes(res);
+        Alerta alerta= new Alerta();
+        alerta.setVisible(true);
     }
     public CheckIn() {
         initComponents();
@@ -57,7 +65,7 @@ public class CheckIn extends javax.swing.JFrame {
         documento = new javax.swing.JFormattedTextField();
         telefono = new javax.swing.JFormattedTextField();
         domicilio = new javax.swing.JFormattedTextField();
-        jFormattedTextField10 = new javax.swing.JFormattedTextField();
+        email = new javax.swing.JFormattedTextField();
         ciudad = new javax.swing.JFormattedTextField();
         nacionalidad = new javax.swing.JFormattedTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -94,11 +102,6 @@ public class CheckIn extends javax.swing.JFrame {
         ddin.setText("DD");
 
         mmin.setText("MM");
-        mmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mminActionPerformed(evt);
-            }
-        });
 
         aaaain.setText("AAAA");
 
@@ -139,11 +142,6 @@ public class CheckIn extends javax.swing.JFrame {
         ddout.setText("DD");
 
         mmout.setText("MM");
-        mmout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mmoutActionPerformed(evt);
-            }
-        });
 
         aaaaout.setText("AAAA");
 
@@ -182,35 +180,11 @@ public class CheckIn extends javax.swing.JFrame {
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel5.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 110, -1));
-
-        apellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                apellidoActionPerformed(evt);
-            }
-        });
         jPanel5.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 150, -1));
-
-        documento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                documentoActionPerformed(evt);
-            }
-        });
         jPanel5.add(documento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 110, -1));
         jPanel5.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 150, -1));
-
-        domicilio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                domicilioActionPerformed(evt);
-            }
-        });
         jPanel5.add(domicilio, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 320, -1));
-
-        jFormattedTextField10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField10ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jFormattedTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 320, -1));
+        jPanel5.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 320, -1));
         jPanel5.add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, 150, -1));
         jPanel5.add(nacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 110, -1));
         jPanel5.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, -1, 210));
@@ -249,6 +223,11 @@ public class CheckIn extends javax.swing.JFrame {
         jPanel5.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 190, -1, -1));
 
         aceptar.setText("Aceptar");
+        aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarActionPerformed(evt);
+            }
+        });
         jPanel5.add(aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, -1, -1));
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 400, 220));
@@ -271,8 +250,8 @@ public class CheckIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setReserva(Reserva res){
-        LocalDate fechaIn= toLocalDate(res.getFechaEntrada());
-        LocalDate fechaOut= toLocalDate(res.getFechaSalida());
+        LocalDate fechaIn= SystemManager.toLocalDate(res.getFechaEntrada());
+        LocalDate fechaOut= SystemManager.toLocalDate(res.getFechaSalida());
         habNumber.setSelectedItem(res.getHabitacion());
         modelHab.setSelectedItem(res.getTipoHab().toUpperCase());
         nombre.setText(res.getNombre());
@@ -284,43 +263,34 @@ public class CheckIn extends javax.swing.JFrame {
         aaaain.setText(String.valueOf(fechaIn.getYear()));
         aaaaout.setText(String.valueOf(fechaOut.getYear()));
     }
-    public LocalDate toLocalDate(Date dateToConvert) {
-        return dateToConvert.toInstant()
-          .atZone(ZoneId.systemDefault())
-          .toLocalDate();
-    }
-    private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_apellidoActionPerformed
-
-    private void domicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_domicilioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_domicilioActionPerformed
-
-    private void jFormattedTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField10ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField10ActionPerformed
-
+    
     private void habNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habNumberActionPerformed
         System.out.println("camio");
     }//GEN-LAST:event_habNumberActionPerformed
-
-    private void documentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_documentoActionPerformed
-
-    private void mminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mminActionPerformed
-
-    private void mmoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmoutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mmoutActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         this.dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
+    private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
+        Cliente cliente= new Cliente(nombre.getText(), apellido.getText(), documento.getText(), telefono.getText(), email.getText(), domicilio.getText(), ciudad.getText(), nacionalidad.getText());
+        SystemManager.crearCliente(cliente);
+        Date fechaEntrada= new Date(Integer.parseInt(aaaain.getText())-1900, Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
+        Date fechaSalida= new Date(Integer.parseInt(aaaaout.getText())-1900, Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
+   
+        Estadia estadia= new Estadia(cliente, fechaEntrada, fechaSalida, "usuario");
+        SystemManager.ocuparHabitacion(estadia, (String) habNumber.getSelectedItem());
+    }//GEN-LAST:event_aceptarActionPerformed
+    
+    public Reserva getRes() {
+        return res;
+    }
+
+    public void setRes(Reserva res) {
+        this.res = res;
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -374,8 +344,8 @@ public class CheckIn extends javax.swing.JFrame {
     private javax.swing.JTextField ddout;
     private javax.swing.JFormattedTextField documento;
     private javax.swing.JFormattedTextField domicilio;
+    private javax.swing.JFormattedTextField email;
     private javax.swing.JComboBox<String> habNumber;
-    private javax.swing.JFormattedTextField jFormattedTextField10;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

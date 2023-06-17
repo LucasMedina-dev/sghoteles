@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.clases;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 /**
@@ -10,7 +11,7 @@ import java.util.*;
  * @author Eva
  */
 
-public class Reserva{
+public class Reserva implements Serializable{
 
     private Integer id;
     private String habitacion;
@@ -104,6 +105,10 @@ public class Reserva{
     @Override
     public String toString() {
         return "Reserva{" + "id=" + id + ", habitacion=" + habitacion + ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + '}';
+    }
+
+    public void setReserva(Reserva res) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 

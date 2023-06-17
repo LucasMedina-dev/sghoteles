@@ -4,9 +4,11 @@
  */
 package interfaces.reservas;
 
+import com.clases.Cliente;
 import com.clases.Reserva;
 import com.clases.SystemManager;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import interfaces.alertas.Alerta;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
@@ -58,14 +60,16 @@ public class CrearReservaFrame extends javax.swing.JFrame {
         nroRes = new javax.swing.JFormattedTextField();
         telefono = new javax.swing.JFormattedTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cancelar = new javax.swing.JButton();
-        aceptar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        documento = new javax.swing.JFormattedTextField();
         jSeparator2 = new javax.swing.JSeparator();
+        aceptar = new javax.swing.JButton();
+        cancelar = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,15 +88,25 @@ public class CrearReservaFrame extends javax.swing.JFrame {
         jLabel11.setText("CheckIn");
 
         ddin.setText("DD");
+        ddin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ddinFocusGained(evt);
+            }
+        });
 
         mmin.setText("MM");
-        mmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mminActionPerformed(evt);
+        mmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mminFocusGained(evt);
             }
         });
 
         aaaain.setText("AAAA");
+        aaaain.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aaaainFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -125,15 +139,25 @@ public class CrearReservaFrame extends javax.swing.JFrame {
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 400, -1));
 
         ddout.setText("DD");
+        ddout.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ddoutFocusGained(evt);
+            }
+        });
 
         mmout.setText("MM");
-        mmout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mmoutActionPerformed(evt);
+        mmout.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mmoutFocusGained(evt);
             }
         });
 
         aaaaout.setText("AAAA");
+        aaaaout.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aaaaoutFocusGained(evt);
+            }
+        });
 
         jLabel12.setText("CheckOut");
 
@@ -192,10 +216,9 @@ public class CrearReservaFrame extends javax.swing.JFrame {
                 nroResActionPerformed(evt);
             }
         });
-        jPanel5.add(nroRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 110, -1));
+        jPanel5.add(nroRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 110, -1));
         jPanel5.add(telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 150, -1));
         jPanel5.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, -1, 210));
-        jPanel5.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 400, 10));
 
         jLabel5.setText("Nombre");
         jPanel5.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 60, 20));
@@ -204,18 +227,17 @@ public class CrearReservaFrame extends javax.swing.JFrame {
         jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 60, 20));
 
         jLabel7.setText("NRO RES");
-        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 60, 20));
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 60, 20));
 
         jLabel8.setText("Telefono");
         jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 60, 20));
 
-        cancelar.setText("Cancelar");
-        cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarActionPerformed(evt);
-            }
-        });
-        jPanel5.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, -1, -1));
+        jLabel10.setText("Nro Doc");
+        jPanel5.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 70, 20));
+        jPanel5.add(documento, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 110, -1));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 400, 110));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 400, 10));
 
         aceptar.setText("Aceptar");
         aceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -223,20 +245,36 @@ public class CrearReservaFrame extends javax.swing.JFrame {
                 aceptarActionPerformed(evt);
             }
         });
-        jPanel5.add(aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 400, 110));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 400, 10));
+        cancelar.setText("Cancelar");
+        cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(aceptar)
+                .addGap(48, 48, 48)
+                .addComponent(cancelar))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(aceptar)
+                    .addComponent(cancelar))
+                .addContainerGap())
         );
 
         pack();
@@ -245,14 +283,6 @@ public class CrearReservaFrame extends javax.swing.JFrame {
     private void habNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habNumActionPerformed
         System.out.println("camio");
     }//GEN-LAST:event_habNumActionPerformed
-
-    private void mminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mminActionPerformed
-
-    private void mmoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmoutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_mmoutActionPerformed
 
     private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
         // TODO add your handling code here:
@@ -272,21 +302,60 @@ public class CrearReservaFrame extends javax.swing.JFrame {
         String nroHab= (String) habNum.getSelectedItem();
         String tipoHabi= (String) tipoHab.getSelectedItem();
         Date fechaEntrada= new Date(Integer.parseInt(aaaain.getText())-1900, Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
-        Date fechaSalida= new Date(Integer.parseInt(aaaaout.getText())-1900, Integer.parseInt(mmout.getText()), Integer.parseInt(ddin.getText()));
+        Date fechaSalida= new Date(Integer.parseInt(aaaaout.getText())-1900, Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
         String nom= nombre.getText();
         String ape= apellido.getText();
         String tel=telefono.getText();
         res=new Reserva(id, nroHab, tipoHabi, fechaEntrada, fechaSalida, nom, ape, tel);
         try {
             SystemManager.crearReserva(res);
+            SystemManager.crearCliente(new Cliente(nom, ape, tel, documento.getText()));
+            
         }catch(IOException e){
-            e.printStackTrace();
+            Alerta alerta= new Alerta("Error al crear reserva, verifique las fechas");
+            alerta.setVisible(true);
         }
     }//GEN-LAST:event_aceptarActionPerformed
 
     private void tipoHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoHabActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tipoHabActionPerformed
+
+    private void ddinFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ddinFocusGained
+        if(ddin.getText().equals("DD")){
+            ddin.setText("");
+        }
+    }//GEN-LAST:event_ddinFocusGained
+
+    private void mminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mminFocusGained
+        if(mmin.getText().equals("MM")){
+            mmin.setText("");
+        }
+    }//GEN-LAST:event_mminFocusGained
+
+    private void aaaainFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aaaainFocusGained
+        if(aaaain.getText().equals("AAAA")){
+            aaaain.setText("");
+        }
+    }//GEN-LAST:event_aaaainFocusGained
+
+    private void ddoutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ddoutFocusGained
+        if(ddout.getText().equals("DD")){
+            ddout.setText("");
+        }
+    }//GEN-LAST:event_ddoutFocusGained
+
+    private void mmoutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mmoutFocusGained
+        if(mmout.getText().equals("MM")){
+            mmout.setText("");
+        }
+    }//GEN-LAST:event_mmoutFocusGained
+
+    private void aaaaoutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aaaaoutFocusGained
+        if(aaaaout.getText().equals("AAAA")){
+            aaaaout.setText("");
+        }
+    }//GEN-LAST:event_aaaaoutFocusGained
 
     /**
      * @param args the command line arguments
@@ -332,8 +401,10 @@ public class CrearReservaFrame extends javax.swing.JFrame {
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField ddin;
     private javax.swing.JTextField ddout;
+    private javax.swing.JFormattedTextField documento;
     private javax.swing.JComboBox<String> habNum;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel5;

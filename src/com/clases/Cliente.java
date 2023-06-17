@@ -4,20 +4,28 @@
  */
 package com.clases;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Lucas
  */
-public class Cliente extends Persona{
+public class Cliente extends Persona implements Serializable{
     private String email;
     private String domicilio;
     private String ciudad;
     private String nacionalidad;
-    private String sexo;
-    private Integer legajo;
-
    
-    public Cliente(String nombre, String apellido, Integer dni, Integer telefono, String email, String domicilio, String ciudad, String nacionalidad, String sexo, Integer legajo) {
+    public Cliente(){
+
+    }
+    public Cliente(String nombre, String apellido, String telefono, String documento) {
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.telefono=telefono;
+        this.dni=documento;
+    }
+    public Cliente(String nombre, String apellido, String dni, String telefono, String email, String domicilio, String ciudad, String nacionalidad) {
         this.nombre=nombre;
         this.apellido=apellido;
         this.dni=dni;
@@ -26,8 +34,6 @@ public class Cliente extends Persona{
         this.domicilio = domicilio;
         this.ciudad = ciudad;
         this.nacionalidad = nacionalidad;
-        this.sexo = sexo;
-        this.legajo = legajo;
     }
 
     //Region gettersSetters
@@ -63,21 +69,6 @@ public class Cliente extends Persona{
         this.nacionalidad = nacionalidad;
     }
 
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public Integer getLegajo() {
-        return legajo;
-    }
-
-    public void setLegajo(Integer legajo) {
-        this.legajo = legajo;
-    }
 
     public String getNombre() {
         return nombre;
@@ -95,19 +86,19 @@ public class Cliente extends Persona{
         this.apellido = apellido;
     }
 
-    public Integer getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(Integer dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 
-    public Integer getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
     //EndRegion
