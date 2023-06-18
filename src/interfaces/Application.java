@@ -8,6 +8,7 @@ import interfaces.panelOpciones.PanelFacturacion;
 import interfaces.panelOpciones.PanelRecepcion;
 import interfaces.panelOpciones.PanelReservas;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -196,7 +197,11 @@ public class Application extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            cargarHab(SystemManager.getHabitaciones());
+            List<Habitacion> habitaciones=SystemManager.getHabitaciones();
+            if(habitaciones!=null){
+                cargarHab(habitaciones);
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
         }

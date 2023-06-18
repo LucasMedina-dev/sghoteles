@@ -34,7 +34,7 @@ public class ElementoHabitacion extends javax.swing.JPanel {
         }
     }
     private void setChecks(Habitacion hab){
-        Date nextIn=hab.getNextIn();
+        String nextIn=hab.getNextIn();
         if(nextIn!=null){
             inData.setText(nextIn.toString());
         }

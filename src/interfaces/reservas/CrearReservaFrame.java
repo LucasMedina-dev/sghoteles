@@ -7,13 +7,11 @@ package interfaces.reservas;
 import com.clases.Cliente;
 import com.clases.Reserva;
 import com.clases.SystemManager;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import interfaces.alertas.Alerta;
 import java.io.IOException;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -301,12 +299,12 @@ public class CrearReservaFrame extends javax.swing.JFrame {
         Integer id= Integer.parseInt(nroRes.getText());
         String nroHab= (String) habNum.getSelectedItem();
         String tipoHabi= (String) tipoHab.getSelectedItem();
-        Date fechaEntrada= new Date(Integer.parseInt(aaaain.getText())-1900, Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
-        Date fechaSalida= new Date(Integer.parseInt(aaaaout.getText())-1900, Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
+        LocalDate fechaEntrada= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
+        LocalDate fechaSalida= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
         String nom= nombre.getText();
         String ape= apellido.getText();
         String tel=telefono.getText();
-        res=new Reserva(id, nroHab, tipoHabi, fechaEntrada, fechaSalida, nom, ape, tel);
+        res=new Reserva(id, nroHab, tipoHabi, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel);
         try {
             SystemManager.crearReserva(res);
             SystemManager.crearCliente(new Cliente(nom, ape, tel, documento.getText()));

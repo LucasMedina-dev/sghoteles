@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 
 //FILE
 import com.fasterxml.jackson.databind.ObjectMapper;
-import static interfaces.reservas.BorrarReserva.borrarReserva;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.util.Date;
@@ -38,16 +37,10 @@ import java.time.ZoneId;
  * @author Lucas
  */
 public class SystemManager {
-
-    
-
-    
-
     
     public SystemManager(){
-        
-        
     }
+    
     public static void ocuparHabitacion(Estadia estadia, String nroHab){
         ArrayList<Habitacion> habitaciones;
         
@@ -55,11 +48,9 @@ public class SystemManager {
             habitaciones=leerJson("src/json/habitaciones.json", Habitacion.class);
             for(Habitacion h : habitaciones){
                 if(h.getNumHab().equals(nroHab) && h.getEstado()==Estado.libre){
-                    System.out.println("");
                     h.setEstadia(estadia);
                     h.setEstado(Estado.ocupada);
                     persistirLista(habitaciones, "src/json/habitaciones.json");
-                    System.out.println("hab encontrada");
                 }
             }
         }catch(Exception e){
@@ -100,7 +91,11 @@ public class SystemManager {
         try {
             for (Reserva a : totalReservas) {
                 if (a.getHabitacion().equals(r.getHabitacion())) {
-                    if (r.getFechaEntrada().before(a.getFechaSalida()) && r.getFechaSalida().after(a.getFechaEntrada())) {
+                    LocalDate inNew=LocalDate.parse(r.getFechaEntrada());
+                    LocalDate outNew=LocalDate.parse(r.getFechaEntrada());
+                    LocalDate inRes=LocalDate.parse(a.getFechaEntrada());
+                    LocalDate outRes=LocalDate.parse(a.getFechaEntrada());
+                    if (inNew.isBefore(inRes) && outNew.isAfter(outRes)) {
                         // Las fechas se superponen, hay conflicto
                         hayConflictos = true;
                         break;
@@ -139,7 +134,7 @@ public class SystemManager {
                 e.printStackTrace();
             }
         }catch(IOException e){
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
     }
     public static Estadia buscarEstadia(String nroHab) {
@@ -166,6 +161,7 @@ public class SystemManager {
             for(Reserva r: reservas){
                 for(Habitacion h : habitaciones){
                     if(r.getHabitacion().equals(h.getNumHab())){
+                        System.out.println(r.getFechaEntrada());
                         h.setNextIn(r.getFechaEntrada());
                     }
                 }
@@ -177,9 +173,9 @@ public class SystemManager {
 
         return habitaciones;
     }
-    private static Date getNextInData(String habNum){
+    private static String getNextInData(String habNum){
         ArrayList <Reserva> reservas= getReservas();
-        Date nextInData=null;
+        String nextInData=null;
         for(Reserva reserva : reservas){
             if(reserva.getHabitacion().equals(habNum)){
                 nextInData= reserva.getFechaEntrada();
@@ -266,7 +262,7 @@ public class SystemManager {
                 }
             }  
         }catch(Exception e){
-            System.out.println(e.getStackTrace());
+            e.printStackTrace();
         }
         return reservaBuscada;
     } 
@@ -297,7 +293,7 @@ public class SystemManager {
             }
             Path data= Path.of(filePath);
             String json= Files.readString(data);
-
+            
             list = jsonToArrayList(json, clase);
         }catch(Exception e){
             e.printStackTrace();
@@ -312,14 +308,10 @@ public class SystemManager {
         }catch(IOException e){
             e.printStackTrace();
         }
-        if(lista.isEmpty()){
+        if(lista==null){
             lista= new ArrayList<T>();
         }
         return lista;
     }
-    public static LocalDate toLocalDate(Date dateToConvert) {
-        return dateToConvert.toInstant()
-          .atZone(ZoneId.systemDefault())
-          .toLocalDate();
-    }
+
 }

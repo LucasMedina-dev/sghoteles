@@ -224,8 +224,8 @@ public class BorrarReserva extends javax.swing.JFrame {
     private void buscarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarReservaActionPerformed
         reserva= SystemManager.buscarReserva(Integer.parseInt(nroRes.getText()));
         if(reserva!=null){
-            LocalDate fechaIn= SystemManager.toLocalDate(reserva.getFechaEntrada());
-            LocalDate fechaOut= SystemManager.toLocalDate(reserva.getFechaSalida());
+            LocalDate fechaIn= LocalDate.parse(reserva.getFechaEntrada());
+            LocalDate fechaOut= LocalDate.parse(reserva.getFechaSalida());
             resExiste.setText("Existe");
             habText.setText(reserva.getHabitacion());
             nombre.setText(reserva.getNombre());

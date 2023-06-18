@@ -1,1 +1,1 @@
-[{"id":5,"habitacion":"4","tipoHab":"ESTANDAR","fechaEntrada":1689649200000,"fechaSalida":1689822000000,"nombre":"Lucas","apellido":"Medina","telefono":"+542235973618"}]
+[{"id":1,"habitacion":"1","tipoHab":"ESTANDAR","fechaEntrada":"2023-06-18","fechaSalida":"2023-06-20","nombre":"Lucas","apellido":"Medina","telefono":"+542235973618"},{"id":1,"habitacion":"1","tipoHab":"ESTANDAR","fechaEntrada":"2023-06-18","fechaSalida":"2023-06-20","nombre":"Lucas","apellido":"Medina","telefono":""}]

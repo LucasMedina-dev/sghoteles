@@ -4,7 +4,6 @@
  */
 package com.clases;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -18,7 +17,7 @@ public class Habitacion {
     private Integer montoDiario;
     private Estado estado;
     private Estadia estadia;
-    private Date nextIn;
+    private String nextIn;
 
     public Habitacion() {
     }
@@ -34,10 +33,9 @@ public class Habitacion {
         }
         this.estado = Estado.libre;
         this.estadia = null;
-        this.nextIn= null;
     }
     
-    public String isTipoHab() {
+    public String getTipoHab() {
         return tipoHab;
     }
 
@@ -77,11 +75,11 @@ public class Habitacion {
         this.estadia = estadia;
     }
     
-    public Date getNextIn() {
+    public String getNextIn() {
         return nextIn;
     }
 
-    public void setNextIn(Date nextIn) {
+    public void setNextIn(String nextIn) {
         this.nextIn = nextIn;
     }
     

@@ -250,8 +250,8 @@ public class CheckIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setReserva(Reserva res){
-        LocalDate fechaIn= SystemManager.toLocalDate(res.getFechaEntrada());
-        LocalDate fechaOut= SystemManager.toLocalDate(res.getFechaSalida());
+        LocalDate fechaIn= LocalDate.parse(res.getFechaEntrada());
+        LocalDate fechaOut= LocalDate.parse(res.getFechaSalida());
         habNumber.setSelectedItem(res.getHabitacion());
         modelHab.setSelectedItem(res.getTipoHab().toUpperCase());
         nombre.setText(res.getNombre());
@@ -275,10 +275,10 @@ public class CheckIn extends javax.swing.JFrame {
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         Cliente cliente= new Cliente(nombre.getText(), apellido.getText(), documento.getText(), telefono.getText(), email.getText(), domicilio.getText(), ciudad.getText(), nacionalidad.getText());
         SystemManager.crearCliente(cliente);
-        Date fechaEntrada= new Date(Integer.parseInt(aaaain.getText())-1900, Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
-        Date fechaSalida= new Date(Integer.parseInt(aaaaout.getText())-1900, Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
+        LocalDate fechaEntrada= LocalDate.of(Integer.parseInt(aaaain.getText())-1900, Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
+        LocalDate fechaSalida= LocalDate.of(Integer.parseInt(aaaaout.getText())-1900, Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
    
-        Estadia estadia= new Estadia(cliente, fechaEntrada, fechaSalida, "usuario");
+        Estadia estadia= new Estadia(cliente, fechaEntrada.toString(), fechaSalida.toString(), "usuario");
         SystemManager.ocuparHabitacion(estadia, (String) habNumber.getSelectedItem());
         
         SystemManager.usarReserva(res);

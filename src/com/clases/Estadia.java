@@ -14,15 +14,15 @@ import java.util.Date;
  */
 public class Estadia implements Serializable{
     private Cliente cliente;
-    private Date checkIn;
-    private Date checkOut;
+    private String checkIn;
+    private String checkOut;
     private ArrayList<Factura> pagos;
     private ArrayList<Cargo> cargos;
     private String usuario;
     public Estadia(){
         
     }
-    public Estadia(Cliente cliente, Date checkIn, Date checkOut, String usuario) {
+    public Estadia(Cliente cliente, String checkIn, String checkOut, String usuario) {
         this.cliente = cliente;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -39,19 +39,19 @@ public class Estadia implements Serializable{
         this.cliente = cliente;
     }
 
-    public Date getCheckIn() {
+    public String getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(String checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public String getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(String checkOut) {
         this.checkOut = checkOut;
     }
 

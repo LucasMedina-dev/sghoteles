@@ -131,7 +131,7 @@ public class LimpiarReservas extends javax.swing.JFrame {
         Reserva reserva =null;
         while (iterator.hasNext()) {
             reserva= iterator.next();
-            LocalDate fechaIn= SystemManager.toLocalDate(reserva.getFechaEntrada());
+            LocalDate fechaIn= LocalDate.parse(reserva.getFechaEntrada());
             System.out.println("fecha " + fechaIn);
             if (fechaIn.isBefore(fechaActual)) {
                 System.out.println("entre al if");

@@ -16,8 +16,8 @@ public class Reserva implements Serializable{
     private Integer id;
     private String habitacion;
     private String tipoHab;
-    private Date fechaEntrada;
-    private Date fechaSalida;
+    private String fechaEntrada;
+    private String fechaSalida;
     private String nombre;
     private String apellido;
     private String telefono;
@@ -27,7 +27,7 @@ public class Reserva implements Serializable{
     
    
     
-    public Reserva(Integer id, String habitacion, String tipoHab, Date fechaEntrada, Date fechaSalida, String nombre, String apellido, String telefono) {
+    public Reserva(Integer id, String habitacion, String tipoHab, String fechaEntrada, String fechaSalida, String nombre, String apellido, String telefono) {
         this.id = id;
         this.habitacion = habitacion;
         this.tipoHab = tipoHab;
@@ -54,19 +54,19 @@ public class Reserva implements Serializable{
         this.habitacion = habitacion;
     }
 
-    public Date getFechaEntrada() {
+    public String getFechaEntrada() {
         return fechaEntrada;
     }
 
-    public void setFechaEntrada(Date fechaEntrada) {
+    public void setFechaEntrada(String fechaEntrada) {
         this.fechaEntrada = fechaEntrada;
     }
 
-    public Date getFechaSalida() {
+    public String getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(Date fechaSalida) {
+    public void setFechaSalida(String fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 
@@ -107,9 +107,6 @@ public class Reserva implements Serializable{
         return "Reserva{" + "id=" + id + ", habitacion=" + habitacion + ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + '}';
     }
 
-    public void setReserva(Reserva res) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 
     

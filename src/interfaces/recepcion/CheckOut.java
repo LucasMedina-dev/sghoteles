@@ -223,10 +223,12 @@ public class CheckOut extends javax.swing.JFrame {
         
     }//GEN-LAST:event_habNumberActionPerformed
     private void setData(Estadia est){
-        LocalDate in=SystemManager.toLocalDate(est.getCheckIn());
-        LocalDate out=SystemManager.toLocalDate(est.getCheckOut());
+        LocalDate in;
+        LocalDate out;
 
         if(est!=null){
+            in=LocalDate.parse(est.getCheckIn());
+            out=LocalDate.parse(est.getCheckOut());
             fechaIn.setText(in.toString());
             fechaOut.setText(out.toString());
         }else{
