@@ -6,6 +6,7 @@ package interfaces.reservas;
 
 import com.clases.Reserva;
 import com.clases.SystemManager;
+import java.time.LocalDate;
 
 /**
  *
@@ -16,6 +17,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
     /**
      * Creates new form ModificarRerservaFrame
      */
+    Reserva reserva;
     public ModificarRerservaFrame() {
         initComponents();
         SystemManager.centerApp(this);
@@ -39,7 +41,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
         resExiste = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        habNumber = new javax.swing.JComboBox<>();
+        habText = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         nombre = new javax.swing.JFormattedTextField();
         apellido = new javax.swing.JFormattedTextField();
@@ -87,6 +89,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(nroRes, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
@@ -107,29 +110,24 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Habitacion");
 
-        habNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "114", "115", "116", "117", "118", "119", "120" }));
-        habNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                habNumberActionPerformed(evt);
-            }
-        });
+        habText.setText("hab");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addComponent(habNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(230, 230, 230))
+                .addGap(18, 18, 18)
+                .addComponent(habText)
+                .addGap(298, 298, 298))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel1)
-                .addComponent(habNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(habText))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 400, -1));
@@ -164,6 +162,11 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
         jPanel5.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, -1, -1));
 
         aceptar.setText("Aceptar");
+        aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarActionPerformed(evt);
+            }
+        });
         jPanel5.add(aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
 
         jLabel11.setText("CheckIn");
@@ -217,10 +220,6 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void habNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habNumberActionPerformed
-        System.out.println("camio");
-    }//GEN-LAST:event_habNumberActionPerformed
-
     private void nroResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nroResActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nroResActionPerformed
@@ -242,13 +241,41 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_apellidoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Reserva res= SystemManager.buscarReserva(Integer.parseInt(nroRes.getText()));
-        if(res!=null){
+        reserva= SystemManager.buscarReserva(Integer.parseInt(nroRes.getText()));
+        if(reserva!=null){
+            LocalDate fechaIn= LocalDate.parse(reserva.getFechaEntrada());
+            LocalDate fechaOut= LocalDate.parse(reserva.getFechaSalida());
             resExiste.setText("Existe");
+            habText.setText(reserva.getHabitacion());
+            nombre.setText(reserva.getNombre());
+            apellido.setText(reserva.getApellido());
+            telefono.setText(reserva.getTelefono());
+            ddin.setText(String.valueOf(fechaIn.getDayOfMonth()));
+            ddout.setText(String.valueOf(fechaOut.getDayOfMonth()));
+            mmin.setText(String.valueOf(fechaIn.getMonthValue()));
+            mmout.setText(String.valueOf(fechaOut.getMonthValue()));
+            aaaain.setText(String.valueOf(fechaIn.getYear()));
+            aaaaout.setText(String.valueOf(fechaOut.getYear()));
+            
         }else{
             resExiste.setText("No existe");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
+        try{
+            //tomar todos los datos y guardarlo en un res
+            LocalDate fechaIn= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
+            LocalDate fechaOut= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
+            
+            Reserva res= new Reserva(reserva.getId(), reserva.getHabitacion(), reserva.getTipoHab(), fechaIn.toString(), fechaOut.toString(), nombre.getText(), apellido.getText(),  telefono.getText());
+            
+            // ejecutar buscaryreemplazar en systemmanager
+            SystemManager.reemplazarReserva(res, reserva.getId());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_aceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,7 +320,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField ddin;
     private javax.swing.JTextField ddout;
-    private javax.swing.JComboBox<String> habNumber;
+    private javax.swing.JLabel habText;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;

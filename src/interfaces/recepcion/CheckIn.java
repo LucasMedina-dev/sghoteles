@@ -275,8 +275,8 @@ public class CheckIn extends javax.swing.JFrame {
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         Cliente cliente= new Cliente(nombre.getText(), apellido.getText(), documento.getText(), telefono.getText(), email.getText(), domicilio.getText(), ciudad.getText(), nacionalidad.getText());
         SystemManager.crearCliente(cliente);
-        LocalDate fechaEntrada= LocalDate.of(Integer.parseInt(aaaain.getText())-1900, Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
-        LocalDate fechaSalida= LocalDate.of(Integer.parseInt(aaaaout.getText())-1900, Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
+        LocalDate fechaEntrada= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
+        LocalDate fechaSalida= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
    
         Estadia estadia= new Estadia(cliente, fechaEntrada.toString(), fechaSalida.toString(), "usuario");
         SystemManager.ocuparHabitacion(estadia, (String) habNumber.getSelectedItem());

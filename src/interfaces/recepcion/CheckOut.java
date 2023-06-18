@@ -5,9 +5,7 @@
 package interfaces.recepcion;
 
 import com.clases.Estadia;
-import com.clases.Reserva;
 import com.clases.SystemManager;
-import java.io.IOException;
 import java.time.LocalDate;
 
 /**

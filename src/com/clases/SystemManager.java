@@ -37,6 +37,8 @@ import java.time.ZoneId;
  * @author Lucas
  */
 public class SystemManager {
+
+    
     
     public SystemManager(){
     }
@@ -83,6 +85,27 @@ public class SystemManager {
             }
         }catch(Exception e){
             e.printStackTrace();
+        }
+    }
+    public static void reemplazarReserva(Reserva reemplazo, Integer id) {
+        try{
+            ArrayList<Reserva> reservas= leerJson("src/json/reserva.json", Reserva.class);
+            int index=-1;
+            for(Reserva r: reservas){
+                if(r.getId().equals(id)){
+                    System.out.println(reemplazo);
+                    //reemplazo la reserva
+                    index=reservas.indexOf(r);
+                    break;
+                }
+            }
+            if(index!=-1){
+                reservas.set(index, reemplazo);
+            }
+            
+            persistirLista(reservas, "src/json/reserva.json");
+        }catch(IOException e){
+            
         }
     }
     public static void crearReserva(Reserva r) throws IllegalArgumentException, JsonProcessingException { ///dividir en dos
@@ -306,9 +329,6 @@ public class SystemManager {
         try{
             lista=objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, clazz));
         }catch(IOException e){
-            e.printStackTrace();
-        }
-        if(lista==null){
             lista= new ArrayList<T>();
         }
         return lista;
