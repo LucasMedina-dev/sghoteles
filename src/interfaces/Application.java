@@ -7,21 +7,7 @@ import interfaces.panelOpciones.PanelAdministracion;
 import interfaces.panelOpciones.PanelFacturacion;
 import interfaces.panelOpciones.PanelRecepcion;
 import interfaces.panelOpciones.PanelReservas;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_CREATE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_DELETE;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
-import static java.nio.file.StandardWatchEventKinds.OVERFLOW;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -238,44 +224,7 @@ public class Application extends javax.swing.JFrame {
         panelHabitaciones.setVisible(true);
         //watcher("src/json/habitaciones.json");
     }
-    public void watcher(String archivo){
-        try (WatchService ws = FileSystems.getDefault().newWatchService()) {
-            // carpeta que deseamos monitorear    
-            Path dirToWatch = Paths.get("src/json");
 
-            // eventos que deseamos que nos envien notificaciones
-            dirToWatch.register(ws, ENTRY_CREATE, ENTRY_MODIFY, ENTRY_DELETE);
-            System.out.println("Watching " + dirToWatch + " for events.");
-            
-            while (true) {
-                // obtener el key
-                WatchKey key = ws.take();
-                
-                // procesar los eventos ocurridos
-                for (WatchEvent<?> event : key.pollEvents()) {
-                    WatchEvent.Kind<?> eventKind = event.kind();
-                    if (eventKind == OVERFLOW) {
-                        System.out.println("Event overflow occurred");
-                        continue;
-                    }
-                    
-                    // obtener informacion del evento ocurrido
-                    WatchEvent<Path> currEvent = (WatchEvent<Path>) event;
-                    Path dirEntry = currEvent.context();
-                    System.out.println("algo ha pasado");
-                    panelHabitaciones.repaint();
-                }
-                
-                // resetear el key
-                boolean isKeyValid = key.reset();
-                if (!isKeyValid) {
-                    break;
-                }
-            }
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
     /**
      * @param args the command line arguments
      */

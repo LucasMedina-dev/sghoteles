@@ -42,6 +42,8 @@ public class SystemManager {
     
 
     
+
+    
     public SystemManager(){
         
         
@@ -139,6 +141,21 @@ public class SystemManager {
         }catch(IOException e){
             System.out.println(e.getStackTrace());
         }
+    }
+    public static Estadia buscarEstadia(String nroHab) {
+        Estadia est=null;
+        ArrayList<Habitacion> habitaciones;
+        try{
+            habitaciones=leerJson("src/json/habitaciones.json", Habitacion.class);
+            for(Habitacion h : habitaciones){
+                if(h.getNumHab().equals(nroHab)){
+                    est=h.getEstadia();
+                }
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return est;
     }
     public static List<Habitacion> getHabitaciones() throws IOException{
         ArrayList<Habitacion> habitaciones= new ArrayList<>();        

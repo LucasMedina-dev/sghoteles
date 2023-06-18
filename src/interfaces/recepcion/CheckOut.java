@@ -4,7 +4,11 @@
  */
 package interfaces.recepcion;
 
+import com.clases.Estadia;
+import com.clases.Reserva;
 import com.clases.SystemManager;
+import java.io.IOException;
+import java.time.LocalDate;
 
 /**
  *
@@ -52,7 +56,7 @@ public class CheckOut extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        habNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "114", "115", "116", "117", "118", "119", "120" }));
+        habNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "114", "115", "116", "117", "118", "119", "120" }));
         habNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 habNumberActionPerformed(evt);
@@ -206,9 +210,31 @@ public class CheckOut extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void habNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habNumberActionPerformed
-        System.out.println("camio");
+        String nroHab;
+        try{
+            nroHab= habNumber.getSelectedItem().toString();
+            Estadia est= SystemManager.buscarEstadia(nroHab);
+            setData(est);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        
+        
     }//GEN-LAST:event_habNumberActionPerformed
+    private void setData(Estadia est){
+        LocalDate in=SystemManager.toLocalDate(est.getCheckIn());
+        LocalDate out=SystemManager.toLocalDate(est.getCheckOut());
 
+        if(est!=null){
+            fechaIn.setText(in.toString());
+            fechaOut.setText(out.toString());
+        }else{
+            fechaIn.setText("");
+            fechaOut.setText("");
+        }
+        
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

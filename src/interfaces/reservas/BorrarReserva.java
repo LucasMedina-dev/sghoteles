@@ -6,13 +6,8 @@ package interfaces.reservas;
 
 import com.clases.Reserva;
 import com.clases.SystemManager;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -280,36 +275,6 @@ public class BorrarReserva extends javax.swing.JFrame {
             e.printStackTrace();
         }
         
-    }
-
-    private static void guardarReservasEnArchivo(ArrayList<Reserva> reservasEliminar) {
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            Date fechaActual = new Date();
-            String fechaActualStr = dateFormat.format(fechaActual);
-
-            String nombreArchivo = "src/json/reservasEliminadas.json";
-
-            FileWriter fileWriter = new FileWriter(nombreArchivo);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-            for (Reserva reserva : reservasEliminar) {
-                // Escribe los detalles de la reserva en el archivo
-                bufferedWriter.write(reserva.toString());
-                bufferedWriter.newLine();
-            }
-            bufferedWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Reserva getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
     }
     
     /**
