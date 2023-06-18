@@ -280,6 +280,8 @@ public class CheckIn extends javax.swing.JFrame {
    
         Estadia estadia= new Estadia(cliente, fechaEntrada, fechaSalida, "usuario");
         SystemManager.ocuparHabitacion(estadia, (String) habNumber.getSelectedItem());
+        
+        SystemManager.usarReserva(res);
     }//GEN-LAST:event_aceptarActionPerformed
     
     public Reserva getRes() {

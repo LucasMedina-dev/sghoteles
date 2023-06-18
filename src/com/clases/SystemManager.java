@@ -5,7 +5,6 @@
 package com.clases;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import interfaces.Application;
 import interfaces.Login;
 import java.awt.Dimension;
@@ -17,6 +16,7 @@ import javax.swing.JFrame;
 
 //FILE
 import com.fasterxml.jackson.databind.ObjectMapper;
+import static interfaces.reservas.BorrarReserva.borrarReserva;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.util.Date;
@@ -209,7 +209,36 @@ public class SystemManager {
         int centerY=(int)screenData.getHeight()/2-(frame.getHeight()/2);
         frame.setLocation(centerX, centerY);
     }
-    
+    public static boolean usarReserva(Reserva reserva){
+        boolean status=false;
+        ArrayList<Reserva> reservasEliminadas = new ArrayList<>();
+        ArrayList<Reserva> reservas = new ArrayList<>();
+        try {
+            reservas = SystemManager.leerJson("src/json/reserva.json", Reserva.class);
+            borrarReserva(reservas, reserva); // Elimina la reserva del ArrayList original
+            reservasEliminadas = SystemManager.leerJson("src/json/reservasUsadas.json", Reserva.class);
+            reservasEliminadas.add(reserva);
+            SystemManager.persistirLista(reservas, "src/json/reserva.json"); // Actualizar el archivo JSON original
+            SystemManager.persistirLista(reservasEliminadas, "src/json/reservasUsadas.json");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
+    }
+    public static void borrarReserva(ArrayList<Reserva> reservas, Reserva reserva) {
+        Reserva borrar=null;
+        try{
+            for(Reserva r : reservas){
+                if(r.getId()==reserva.getId()){
+                    borrar=r;
+                }
+            }
+            reservas.remove(borrar);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+    }
     public static Reserva buscarReserva(int nroRes){
         ArrayList<Reserva> reservas=getReservas();
         Reserva reservaBuscada=null;
@@ -260,7 +289,12 @@ public class SystemManager {
     }
     public static <T> ArrayList<T> jsonToArrayList(String json, Class<T> clazz) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        ArrayList<T> lista=objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, clazz));
+        ArrayList<T> lista=null;
+        try{
+            lista=objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, clazz));
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         if(lista.isEmpty()){
             lista= new ArrayList<T>();
         }

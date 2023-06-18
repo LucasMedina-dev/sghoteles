@@ -16,11 +16,12 @@ public class Alerta extends javax.swing.JFrame{
      */
     public Alerta(){
         initComponents();
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     public Alerta(String mensaje) {
         initComponents();
         mensajeError.setText(mensaje);
-
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
