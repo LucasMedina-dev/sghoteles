@@ -10,6 +10,7 @@ import interfaces.recepcion.CheckIn;
 import interfaces.reservas.BorrarReserva;
 import interfaces.reservas.CrearReservaFrame;
 import interfaces.reservas.LimpiarReservas;
+import interfaces.reservas.ListadoReservas;
 import interfaces.reservas.ModificarRerservaFrame;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -151,7 +152,8 @@ public class PanelReservas extends javax.swing.JPanel {
     }//GEN-LAST:event_reservasCancelarActionPerformed
 
     private void reservasListado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasListado1ActionPerformed
-        // TODO add your handling code here:
+        ListadoReservas listado = new ListadoReservas();
+        listado.setVisible(true);
     }//GEN-LAST:event_reservasListado1ActionPerformed
 
 
