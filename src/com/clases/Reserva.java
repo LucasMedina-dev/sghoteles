@@ -4,8 +4,6 @@
  */
 package com.clases;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.*;
 /**
  *
  * @author Eva

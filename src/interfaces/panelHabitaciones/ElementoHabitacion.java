@@ -4,12 +4,10 @@
  */
 package interfaces.panelHabitaciones;
 
+import com.clases.Cliente;
 import com.clases.Estado;
 import com.clases.Habitacion;
 import java.awt.Color;
-import java.time.LocalDate;
-import java.util.Date;
-
 
 
 /**
@@ -36,13 +34,17 @@ public class ElementoHabitacion extends javax.swing.JPanel {
     private void setChecks(Habitacion hab){
         String nextIn=hab.getNextIn();
         if(nextIn!=null){
-            inData.setText(nextIn.toString());
+            
+            inData.setText("In: "+nextIn.toString());
         }
         
         if(hab.getEstadia()!=null){
-            outData.setText(String.valueOf(hab.getEstadia().getCheckOut()));
+            Cliente cliente= hab.getEstadia().getCliente();
+            String nombreCompleto = cliente.getNombre() + " " + cliente.getApellido();
+            nombrePax.setText(nombreCompleto);
+            outData.setText("Out: "+String.valueOf(hab.getEstadia().getCheckOut()));
         }else{
-            outData.setText("Hab Libre");
+            outData.setText("Out: ");
         }
     }
     /**
@@ -57,21 +59,31 @@ public class ElementoHabitacion extends javax.swing.JPanel {
         habBackground = new javax.swing.JPanel();
         habNumber = new javax.swing.JLabel();
         inData = new javax.swing.JLabel();
+        nombrePax = new javax.swing.JLabel();
         outData = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(75, 100));
+        setMinimumSize(new java.awt.Dimension(85, 100));
+        setPreferredSize(new java.awt.Dimension(85, 100));
 
         habBackground.setBackground(java.awt.Color.white);
+        habBackground.setMinimumSize(new java.awt.Dimension(85, 100));
+        habBackground.setPreferredSize(new java.awt.Dimension(85, 100));
         habBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         habNumber.setText("Hab");
         habBackground.add(habNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
+        inData.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         inData.setText("CheckIn");
-        habBackground.add(inData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, -1, -1));
+        habBackground.add(inData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
 
+        nombrePax.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        nombrePax.setText("nombrePax");
+        habBackground.add(nombrePax, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
+
+        outData.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         outData.setText("CheckOut");
-        habBackground.add(outData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
+        habBackground.add(outData, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,7 +93,7 @@ public class ElementoHabitacion extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(habBackground, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addComponent(habBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -90,6 +102,7 @@ public class ElementoHabitacion extends javax.swing.JPanel {
     private javax.swing.JPanel habBackground;
     private javax.swing.JLabel habNumber;
     private javax.swing.JLabel inData;
+    private javax.swing.JLabel nombrePax;
     private javax.swing.JLabel outData;
     // End of variables declaration//GEN-END:variables
 }

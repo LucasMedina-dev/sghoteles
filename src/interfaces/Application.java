@@ -77,7 +77,6 @@ public class Application extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 700));
-        setResizable(false);
         setSize(new java.awt.Dimension(800, 700));
 
         background.setBackground(java.awt.Color.black);
@@ -158,12 +157,12 @@ public class Application extends javax.swing.JFrame {
         });
         leftPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 580, -1, -1));
 
-        background.add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        background.add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 660));
 
         panelHabitaciones.setBackground(java.awt.Color.gray);
         panelHabitaciones.setMinimumSize(new java.awt.Dimension(600, 700));
         panelHabitaciones.setPreferredSize(new java.awt.Dimension(600, 700));
-        background.add(panelHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 600, -1));
+        background.add(panelHabitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 0, 600, 660));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,7 +172,7 @@ public class Application extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

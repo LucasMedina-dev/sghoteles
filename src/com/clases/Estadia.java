@@ -19,16 +19,18 @@ public class Estadia implements Serializable{
     private ArrayList<Factura> pagos;
     private ArrayList<Cargo> cargos;
     private String usuario;
+    private Integer montoDiario;
     public Estadia(){
         
     }
-    public Estadia(Cliente cliente, String checkIn, String checkOut, String usuario) {
+    public Estadia(Cliente cliente, String checkIn, String checkOut, String usuario, Integer montoDiario) {
         this.cliente = cliente;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.pagos = null;
         this.cargos = null;
         this.usuario = usuario;
+        this.montoDiario=montoDiario;
     }
 
     public Cliente getCliente() {
@@ -77,6 +79,14 @@ public class Estadia implements Serializable{
 
     public void setUsuario(String usuario) {
         this.usuario = usuario;
+    }
+
+    public Integer getMontoDiario() {
+        return montoDiario;
+    }
+
+    public void setMontoDiario(Integer montoDiario) {
+        this.montoDiario = montoDiario;
     }
     
     

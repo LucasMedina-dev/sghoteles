@@ -4,7 +4,9 @@
  */
 package interfaces.recepcion;
 
+import com.clases.Cargo;
 import com.clases.Estadia;
+import com.clases.Factura;
 import com.clases.SystemManager;
 import java.time.LocalDate;
 
@@ -129,8 +131,8 @@ public class CheckOut extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fechaIn, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(fechaIn, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fechaOut)
@@ -229,6 +231,22 @@ public class CheckOut extends javax.swing.JFrame {
             out=LocalDate.parse(est.getCheckOut());
             fechaIn.setText(in.toString());
             fechaOut.setText(out.toString());
+            int cantDias=SystemManager.calcularDiferenciaDias(in, out);
+            int montoDiario= (int)est.getMontoDiario();
+            int cargos=0;
+            int pagos=0;
+            if(est.getCargos()!=null){
+                for(Cargo c : est.getCargos()){
+                    cargos+=c.getRecargo();
+                }
+            }
+            if(est.getPagos()!=null){
+                for(Factura f : est.getPagos()){
+                    pagos+=f.getMonto();
+                }
+            }
+            int montoTotal= (cantDias * montoDiario) + cargos - pagos;
+            debe.setText(String.valueOf(montoTotal));
         }else{
             fechaIn.setText("");
             fechaOut.setText("");

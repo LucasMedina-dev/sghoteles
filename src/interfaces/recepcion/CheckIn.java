@@ -6,14 +6,19 @@ package interfaces.recepcion;
 
 import com.clases.Cliente;
 import com.clases.Estadia;
+import com.clases.Habitacion;
 import com.clases.Reserva;
 import com.clases.SystemManager;
 import interfaces.Application;
 import interfaces.alertas.Alerta;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -265,7 +270,7 @@ public class CheckIn extends javax.swing.JFrame {
     }
     
     private void habNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habNumberActionPerformed
-        System.out.println("camio");
+
     }//GEN-LAST:event_habNumberActionPerformed
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
@@ -277,8 +282,18 @@ public class CheckIn extends javax.swing.JFrame {
         SystemManager.crearCliente(cliente);
         LocalDate fechaEntrada= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
         LocalDate fechaSalida= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
-   
-        Estadia estadia= new Estadia(cliente, fechaEntrada.toString(), fechaSalida.toString(), "usuario");
+        int montoDiario=0;
+        try {
+            ArrayList<Habitacion> habitaciones= SystemManager.leerJson("src/json/habitaciones.json", Habitacion.class);
+            for(Habitacion h : habitaciones){
+                if(res.getHabitacion().equals(h.getNumHab())){
+                    montoDiario=h.getMontoDiario();
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Estadia estadia= new Estadia(cliente, fechaEntrada.toString(), fechaSalida.toString(), "usuario",montoDiario );
         SystemManager.ocuparHabitacion(estadia, (String) habNumber.getSelectedItem());
         
         SystemManager.usarReserva(res);

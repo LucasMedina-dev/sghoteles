@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 
 
@@ -93,7 +95,6 @@ public class SystemManager {
             int index=-1;
             for(Reserva r: reservas){
                 if(r.getId().equals(id)){
-                    System.out.println(reemplazo);
                     //reemplazo la reserva
                     index=reservas.indexOf(r);
                     break;
@@ -207,6 +208,13 @@ public class SystemManager {
         
         return nextInData;
     }
+    public static int calcularDiferenciaDias(LocalDate checkIn, LocalDate checkOut) {
+
+        // Calcula la diferencia de días
+        int diferencia = (int)ChronoUnit.DAYS.between(checkIn, checkOut);
+
+        return diferencia;
+    }
     private static ArrayList<Reserva> getReservas() {
         ArrayList<Reserva> reservas= new ArrayList<>();
         try {
@@ -247,15 +255,19 @@ public class SystemManager {
     }
     public static boolean usarReserva(Reserva reserva){
         boolean status=false;
-        ArrayList<Reserva> reservasEliminadas = new ArrayList<>();
+        ArrayList<Reserva> reservasUsadas = new ArrayList<>();
         ArrayList<Reserva> reservas = new ArrayList<>();
         try {
             reservas = SystemManager.leerJson("src/json/reserva.json", Reserva.class);
+            System.out.println("Antes de borrar" + reservas.size());
             borrarReserva(reservas, reserva); // Elimina la reserva del ArrayList original
-            reservasEliminadas = SystemManager.leerJson("src/json/reservasUsadas.json", Reserva.class);
-            reservasEliminadas.add(reserva);
+            System.out.println("Despues de borrar" + reservas.size());
+            
+            
+            reservasUsadas = SystemManager.leerJson("src/json/reservasUsadas.json", Reserva.class);
+            reservasUsadas.add(reserva);
             SystemManager.persistirLista(reservas, "src/json/reserva.json"); // Actualizar el archivo JSON original
-            SystemManager.persistirLista(reservasEliminadas, "src/json/reservasUsadas.json");
+            SystemManager.persistirLista(reservasUsadas, "src/json/reservasUsadas.json");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -265,7 +277,7 @@ public class SystemManager {
         Reserva borrar=null;
         try{
             for(Reserva r : reservas){
-                if(r.getId()==reserva.getId()){
+                if(r.getId().equals(reserva.getId())){
                     borrar=r;
                 }
             }
