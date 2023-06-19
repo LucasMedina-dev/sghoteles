@@ -38,7 +38,7 @@
                       <Component id="reservasCobroParcial" alignment="0" max="32767" attributes="0"/>
                       <Component id="reservasQuitarCargo" alignment="0" max="32767" attributes="0"/>
                       <Component id="reservasAniadirCargo" alignment="0" max="32767" attributes="0"/>
-                      <Component id="reservasCobrarHab" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="bloquearHabitaciones" alignment="0" pref="200" max="32767" attributes="0"/>
                       <Component id="jLabel1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
@@ -50,7 +50,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" pref="31" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="reservasCobrarHab" min="-2" max="-2" attributes="0"/>
+                  <Component id="bloquearHabitaciones" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="reservasAniadirCargo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -63,10 +63,14 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="reservasCobrarHab">
+        <Component class="javax.swing.JButton" name="bloquearHabitaciones">
           <Properties>
             <Property name="text" type="java.lang.String" value="Bloquear habitaciones"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bloquearHabitacionesMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bloquearHabitacionesActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="reservasAniadirCargo">
           <Properties>

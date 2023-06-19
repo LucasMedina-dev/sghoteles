@@ -272,6 +272,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
             
             // ejecutar buscaryreemplazar en systemmanager
             SystemManager.reemplazarReserva(res, reserva.getId());
+            
         }catch(Exception e){
             e.printStackTrace();
         }
