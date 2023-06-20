@@ -8,21 +8,11 @@ import interfaces.panelOpciones.PanelFacturacion;
 import interfaces.panelOpciones.PanelRecepcion;
 import interfaces.panelOpciones.PanelReservas;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author Lucas
- */
 public class Application extends javax.swing.JFrame {
     private PanelAdministracion pAdmin=new PanelAdministracion();
     private PanelRecepcion pRecepcion= new PanelRecepcion();

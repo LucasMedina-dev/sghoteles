@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package interfaces.recepcion;
 
 import com.clases.Cliente;
@@ -9,21 +5,13 @@ import com.clases.Estadia;
 import com.clases.Habitacion;
 import com.clases.Reserva;
 import com.clases.SystemManager;
-import interfaces.Application;
 import interfaces.alertas.Alerta;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Lucas
- */
 public class CheckIn extends javax.swing.JFrame {
 
     /**

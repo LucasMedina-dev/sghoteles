@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package interfaces.administracion;
 
 import com.clases.Estado;
@@ -9,13 +5,7 @@ import com.clases.Habitacion;
 import com.clases.SystemManager;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import javax.swing.AbstractButton;
 
-/**
- *
- * @author Nicolás Vera
- */
 public class BloquearHabitaciones extends javax.swing.JFrame {
 
     /**
@@ -146,7 +136,7 @@ public class BloquearHabitaciones extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // se puede pasar solo a libre si la habitacion solo esta en mantenimiento y viceversa.
         // la habitacion debe existir
-        ArrayList<Habitacion> lista = new ArrayList();
+        ArrayList<Habitacion> lista;
         try{
             lista = SystemManager.leerJson("src/json/habitaciones.json", Habitacion.class);
             if(!lista.isEmpty()){
@@ -161,7 +151,6 @@ public class BloquearHabitaciones extends javax.swing.JFrame {
                 SystemManager.persistirLista(lista, "src/json/habitaciones.json");
             }
         }catch(IOException e){
-            e.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

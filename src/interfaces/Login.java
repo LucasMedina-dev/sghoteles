@@ -1,24 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package interfaces;
 
 import com.clases.SystemManager;
 import com.clases.Usuario;
-import interfaces.Application;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.Window;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Lucas
- */
 public class Login extends javax.swing.JFrame {
 
     /**

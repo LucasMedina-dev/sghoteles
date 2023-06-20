@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package interfaces.panelOpciones;
 
 
@@ -12,10 +8,6 @@ import interfaces.reservas.ListadoReservas;
 import interfaces.reservas.ModificarRerservaFrame;
 
 
-/**
- *
- * @author Lucas
- */
 public class PanelReservas extends javax.swing.JPanel {
 
     /**

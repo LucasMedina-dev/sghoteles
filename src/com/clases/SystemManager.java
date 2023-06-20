@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.clases;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -16,28 +12,19 @@ import javax.swing.JFrame;
 
 //FILE
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.FileWriter;
 import java.nio.file.Files;
-import java.util.Date;
+
 
 //watcher
 import java.io.IOException;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
+
 import java.time.temporal.ChronoUnit;
 
 
-
-
-
-
-
-/**
- *
- * @author Lucas
- */
 public class SystemManager {
 
     
@@ -157,7 +144,7 @@ public class SystemManager {
             }catch(IOException e){
                 e.printStackTrace();
             }
-        }catch(IOException e){
+        }catch(Exception e){
             e.printStackTrace();
         }
     }
@@ -340,7 +327,7 @@ public class SystemManager {
         ArrayList<T> lista=null;
         try{
             lista=objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, clazz));
-        }catch(IOException e){
+        }catch(Exception e){
             lista= new ArrayList<T>();
         }
         return lista;

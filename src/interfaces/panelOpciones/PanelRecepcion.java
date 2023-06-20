@@ -1,17 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package interfaces.panelOpciones;
 
-import com.clases.SystemManager;
 import interfaces.recepcion.CheckOut;
 import interfaces.recepcion.ConsultaReserva;
 
-/**
- *
- * @author Lucas
- */
 public class PanelRecepcion extends javax.swing.JPanel {
 
     /**

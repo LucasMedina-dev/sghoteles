@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package interfaces.panelHabitaciones;
 
 import com.clases.Cliente;
@@ -9,11 +5,6 @@ import com.clases.Estado;
 import com.clases.Habitacion;
 import java.awt.Color;
 
-
-/**
- *
- * @author Lucas
- */
 public class ElementoHabitacion extends javax.swing.JPanel {
 
     public ElementoHabitacion(Habitacion hab) {

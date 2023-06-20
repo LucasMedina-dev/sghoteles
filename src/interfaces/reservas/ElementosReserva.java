@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package interfaces.reservas;
 
-/**
- *
- * @author Nicolás Vera
- */
 public class ElementosReserva extends javax.swing.JPanel {
 
     /**

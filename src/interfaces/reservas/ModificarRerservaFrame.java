@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package interfaces.reservas;
 
 import com.clases.Reserva;
 import com.clases.SystemManager;
 import java.time.LocalDate;
 
-/**
- *
- * @author Lucas
- */
 public class ModificarRerservaFrame extends javax.swing.JFrame {
 
     /**
