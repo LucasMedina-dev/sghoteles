@@ -2,6 +2,7 @@ package interfaces.recepcion;
 
 import com.clases.Cliente;
 import com.clases.Estadia;
+import com.clases.Estado;
 import com.clases.Habitacion;
 import com.clases.Reserva;
 import com.clases.SystemManager;
@@ -246,7 +247,7 @@ public class CheckIn extends javax.swing.JFrame {
         LocalDate fechaIn= LocalDate.parse(res.getFechaEntrada());
         LocalDate fechaOut= LocalDate.parse(res.getFechaSalida());
         habNumber.setSelectedItem(res.getHabitacion());
-        modelHab.setSelectedItem(res.getTipoHab().toUpperCase());
+        //modelHab.setSelectedItem(res.getTipoHab().toUpperCase());
         nombre.setText(res.getNombre());
         apellido.setText(res.getApellido());
         ddin.setText(String.valueOf(fechaIn.getDayOfMonth()));
@@ -266,7 +267,7 @@ public class CheckIn extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-        Cliente cliente= new Cliente(nombre.getText(), apellido.getText(), documento.getText(), telefono.getText(), email.getText(), domicilio.getText(), ciudad.getText(), nacionalidad.getText());
+       Cliente cliente= new Cliente(nombre.getText(), apellido.getText(), documento.getText(), telefono.getText(), email.getText(), domicilio.getText(), ciudad.getText(), nacionalidad.getText());
         SystemManager.crearCliente(cliente);
         LocalDate fechaEntrada= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
         LocalDate fechaSalida= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
@@ -274,17 +275,23 @@ public class CheckIn extends javax.swing.JFrame {
         try {
             ArrayList<Habitacion> habitaciones= SystemManager.leerJson("src/json/habitaciones.json", Habitacion.class);
             for(Habitacion h : habitaciones){
-                if(res.getHabitacion().equals(h.getNumHab())){
+                if(habNumber.getSelectedItem().toString().equals(h.getNumHab()) && h.getEstado().equals(Estado.libre)){
                     montoDiario=h.getMontoDiario();
+                    break;
+                    
+                }else{
+                    Alerta alert = new Alerta("La habitacion NO existe o NO esta disponible");
+                    break;
                 }
             }
         } catch (IOException ex) {
             Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
         }
         Estadia estadia= new Estadia(cliente, fechaEntrada.toString(), fechaSalida.toString(), "usuario",montoDiario );
-        SystemManager.ocuparHabitacion(estadia, (String) habNumber.getSelectedItem());
-        
-        SystemManager.usarReserva(res);
+        SystemManager.ocuparHabitacion(estadia, habNumber.getSelectedItem().toString());
+        if(res!=null){
+            SystemManager.usarReserva(res);
+        }
     }//GEN-LAST:event_aceptarActionPerformed
     
     public Reserva getRes() {

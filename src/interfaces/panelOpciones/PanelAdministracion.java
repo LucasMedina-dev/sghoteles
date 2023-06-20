@@ -1,5 +1,8 @@
 package interfaces.panelOpciones;
 
+import com.clases.SystemManager;
+import interfaces.administracion.BloquearHabitaciones;
+
 public class PanelAdministracion extends javax.swing.JPanel {
 
     /**
@@ -19,7 +22,7 @@ public class PanelAdministracion extends javax.swing.JPanel {
     private void initComponents() {
 
         panelFacturacion = new javax.swing.JPanel();
-        reservasCobrarHab = new javax.swing.JButton();
+        bloquearHabitaciones = new javax.swing.JButton();
         reservasAniadirCargo = new javax.swing.JButton();
         reservasQuitarCargo = new javax.swing.JButton();
         reservasCobroParcial = new javax.swing.JButton();
@@ -29,7 +32,12 @@ public class PanelAdministracion extends javax.swing.JPanel {
 
         panelFacturacion.setBackground(new java.awt.Color(80, 105, 140));
 
-        reservasCobrarHab.setText("Bloquear habitaciones");
+        bloquearHabitaciones.setText("Bloquear habitaciones");
+        bloquearHabitaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bloquearHabitacionesActionPerformed(evt);
+            }
+        });
 
         reservasAniadirCargo.setText("Caja");
 
@@ -51,7 +59,7 @@ public class PanelAdministracion extends javax.swing.JPanel {
                     .addComponent(reservasCobroParcial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(reservasQuitarCargo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(reservasAniadirCargo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(reservasCobrarHab, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(bloquearHabitaciones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -60,7 +68,7 @@ public class PanelAdministracion extends javax.swing.JPanel {
             .addGroup(panelFacturacionLayout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(reservasCobrarHab)
+                .addComponent(bloquearHabitaciones)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reservasAniadirCargo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -73,12 +81,18 @@ public class PanelAdministracion extends javax.swing.JPanel {
         add(panelFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void bloquearHabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bloquearHabitacionesActionPerformed
+        BloquearHabitaciones frame = new BloquearHabitaciones();
+        frame.setVisible(true);
+        
+    }//GEN-LAST:event_bloquearHabitacionesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bloquearHabitaciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panelFacturacion;
     private javax.swing.JButton reservasAniadirCargo;
-    private javax.swing.JButton reservasCobrarHab;
     private javax.swing.JButton reservasCobroParcial;
     private javax.swing.JButton reservasQuitarCargo;
     // End of variables declaration//GEN-END:variables

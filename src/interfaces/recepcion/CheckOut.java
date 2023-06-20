@@ -2,11 +2,19 @@ package interfaces.recepcion;
 
 import com.clases.Cargo;
 import com.clases.Estadia;
+import com.clases.Estado;
 import com.clases.Factura;
+import com.clases.Habitacion;
 import com.clases.SystemManager;
+import interfaces.alertas.Alerta;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class CheckOut extends javax.swing.JFrame {
+    
+    public String nroHab;
+    public Estadia est;
 
     /**
      * Creates new form CheckOut
@@ -202,10 +210,10 @@ public class CheckOut extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void habNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habNumberActionPerformed
-        String nroHab;
+       
         try{
             nroHab= habNumber.getSelectedItem().toString();
-            Estadia est= SystemManager.buscarEstadia(nroHab);
+            est= SystemManager.buscarEstadia(nroHab);
             setData(est);
         }catch(Exception e){
             e.printStackTrace();
@@ -246,7 +254,27 @@ public class CheckOut extends javax.swing.JFrame {
         
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        try{
+            ArrayList<Habitacion> habitaciones=SystemManager.leerJson("src/json/habitaciones.json", Habitacion.class);
+            int index;
+            for(Habitacion h: habitaciones){
+                if(h.getNumHab().equals(nroHab)&& h.getEstado().equals(Estado.ocupada)){
+                    
+                    h.setEstadia(null);
+                    h.setEstado(Estado.libre);
+                    SystemManager.persistirLista(habitaciones,"src/json/habitaciones.json");
+                    this.dispose();
+                    Alerta alert = new Alerta("Pago ingresado con exito!!");
+                    break;
+                }else{
+                    Alerta alerta = new Alerta("La habitacion NO esta ocupada");
+                    break;
+                }
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

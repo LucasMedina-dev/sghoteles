@@ -1,5 +1,7 @@
 package interfaces.alertas;
 
+import com.clases.SystemManager;
+
 public class Alerta extends javax.swing.JFrame{
 
     /**
@@ -15,6 +17,7 @@ public class Alerta extends javax.swing.JFrame{
         mensajeError.setText(mensaje);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setVisible(true);
+        SystemManager.centerApp(this);
     }
 
     /**

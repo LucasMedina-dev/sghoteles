@@ -3,6 +3,7 @@ package interfaces.administracion;
 import com.clases.Estado;
 import com.clases.Habitacion;
 import com.clases.SystemManager;
+import interfaces.alertas.Alerta;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,6 +17,7 @@ public class BloquearHabitaciones extends javax.swing.JFrame {
     public BloquearHabitaciones() {
         initComponents();
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        SystemManager.centerApp(this);
     }
 
     /**
@@ -136,21 +138,37 @@ public class BloquearHabitaciones extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // se puede pasar solo a libre si la habitacion solo esta en mantenimiento y viceversa.
         // la habitacion debe existir
+        Boolean habitacion = false;
+        Boolean eleccion = true;
         ArrayList<Habitacion> lista;
         try{
             lista = SystemManager.leerJson("src/json/habitaciones.json", Habitacion.class);
             if(!lista.isEmpty()){
                 for(Habitacion h : lista){
-                    if(h.getNumHab().equals(numHab.getText())){
+                    if(h.getNumHab().equals(numHab.getText()) && estado != null){
                         if(h.getEstado().equals(Estado.libre) || h.getEstado().equals(Estado.mantenimiento)){
                             h.setEstado(estado);
+                            habitacion = true;
                             break;
-                        }
+                        }else{
+                            eleccion = false;
+                        }   
                     }
                 }
+                
+                if(!habitacion){
+                    Alerta alerta = new Alerta("La Habitacion NO Existe!!");
+                }else{
+                    this.dispose();
+                }
+                if(!eleccion){
+                    Alerta alerta1 = new Alerta("Seleccione un estado!!");
+                }
                 SystemManager.persistirLista(lista, "src/json/habitaciones.json");
+               
             }
         }catch(IOException e){
+            e.printStackTrace();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -1,6 +1,8 @@
 package interfaces.recepcion;
 
+import com.clases.Reserva;
 import com.clases.SystemManager;
+import interfaces.alertas.Alerta;
 
 public class ConsultaReserva extends javax.swing.JFrame {
 
@@ -117,10 +119,20 @@ public class ConsultaReserva extends javax.swing.JFrame {
         int numeroReserva;
         try{
             numeroReserva=Integer.parseInt(nroReserva.getText());
-            frame= new CheckIn(numeroReserva); // Se le pasa por parametro el numero de reserva
+            Reserva res = SystemManager.buscarReserva(numeroReserva);
+            
+            if(res !=null){
+                frame= new CheckIn(numeroReserva); // Se le pasa por parametro el numero de reserva
+                this.dispose();
+            }else{
+                Alerta alert = new Alerta("El numero de reserva es incorrecto");
+            }
+            
+            
             if(frame!=null){
             frame.setVisible(true);
         }
+            
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -129,6 +141,7 @@ public class ConsultaReserva extends javax.swing.JFrame {
     private void sinReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sinReservaActionPerformed
         CheckIn checkIn= new CheckIn();
         checkIn.setVisible(true);
+        this.dispose();
         
     }//GEN-LAST:event_sinReservaActionPerformed
 

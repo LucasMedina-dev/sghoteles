@@ -17,10 +17,9 @@ public class Reserva implements Serializable{
     
    
     
-    public Reserva(Integer id, String habitacion, String tipoHab, String fechaEntrada, String fechaSalida, String nombre, String apellido, String telefono) {
+    public Reserva(Integer id, String habitacion, String fechaEntrada, String fechaSalida, String nombre, String apellido, String telefono) {
         this.id = id;
         this.habitacion = habitacion;
-        this.tipoHab = tipoHab;
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.nombre = nombre;

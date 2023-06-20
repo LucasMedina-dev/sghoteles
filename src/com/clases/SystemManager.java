@@ -38,12 +38,14 @@ public class SystemManager {
         try{
             habitaciones=leerJson("src/json/habitaciones.json", Habitacion.class);
             for(Habitacion h : habitaciones){
-                if(h.getNumHab().equals(nroHab) && h.getEstado()==Estado.libre){
+                if(h.getNumHab().equals(nroHab) && h.getEstado().equals(Estado.libre)){
                     h.setEstadia(estadia);
                     h.setEstado(Estado.ocupada);
-                    persistirLista(habitaciones, "src/json/habitaciones.json");
+                    //persistirLista(habitaciones, "src/json/habitaciones.json");
+                    break;
                 }
             }
+            persistirLista(habitaciones, "src/json/habitaciones.json");
         }catch(Exception e){
             e.printStackTrace();
         }

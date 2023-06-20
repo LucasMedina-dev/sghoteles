@@ -260,7 +260,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
             LocalDate fechaIn= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
             LocalDate fechaOut= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
             
-            Reserva res= new Reserva(reserva.getId(), reserva.getHabitacion(), reserva.getTipoHab(), fechaIn.toString(), fechaOut.toString(), nombre.getText(), apellido.getText(),  telefono.getText());
+            Reserva res= new Reserva(reserva.getId(), reserva.getHabitacion(), fechaIn.toString(), fechaOut.toString(), nombre.getText(), apellido.getText(),  telefono.getText());
             
             // ejecutar buscaryreemplazar en systemmanager
             SystemManager.reemplazarReserva(res, reserva.getId());
