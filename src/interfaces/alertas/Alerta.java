@@ -37,19 +37,17 @@ public class Alerta extends javax.swing.JFrame{
 
         jPanel1 = new javax.swing.JPanel();
         boton = new javax.swing.JButton();
-        texto = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         mensajeError = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         setSize(new java.awt.Dimension(250, 150));
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 51));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setMinimumSize(new java.awt.Dimension(250, 150));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        boton.setBackground(new java.awt.Color(0, 204, 102));
+        boton.setBackground(new java.awt.Color(204, 255, 255));
         boton.setText("Aceptar");
         boton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -62,27 +60,7 @@ public class Alerta extends javax.swing.JFrame{
             }
         });
         jPanel1.add(boton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, -1, -1));
-
-        texto.setBackground(new java.awt.Color(0, 0, 204));
-        texto.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        texto.setForeground(new java.awt.Color(0, 0, 255));
-        texto.setText("Error");
-        jPanel1.add(texto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
-
-        mensajeError.setBackground(new java.awt.Color(255, 0, 51));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mensajeError, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mensajeError, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 160, 80));
+        jPanel1.add(mensajeError, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 250, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,8 +122,6 @@ public class Alerta extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boton;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField mensajeError;
-    private javax.swing.JLabel texto;
     // End of variables declaration//GEN-END:variables
 }

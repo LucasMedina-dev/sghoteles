@@ -4,20 +4,13 @@
  */
 package interfaces.panelOpciones;
 
-import com.clases.Reserva;
-import com.clases.SystemManager;
-import interfaces.recepcion.CheckIn;
+
 import interfaces.reservas.BorrarReserva;
 import interfaces.reservas.CrearReservaFrame;
 import interfaces.reservas.LimpiarReservas;
 import interfaces.reservas.ListadoReservas;
 import interfaces.reservas.ModificarRerservaFrame;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
+
 
 /**
  *
@@ -105,7 +98,7 @@ public class PanelReservas extends javax.swing.JPanel {
                     .addComponent(reservasCrear, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(reservasListado1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
-                .addGap(0, 116, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         panelReservasLayout.setVerticalGroup(
             panelReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,10 +114,10 @@ public class PanelReservas extends javax.swing.JPanel {
                 .addComponent(reservasNoShow)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reservasListado1)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
 
-        add(panelReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(panelReservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 300));
     }// </editor-fold>//GEN-END:initComponents
 
     private void reservasCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasCrearActionPerformed
@@ -152,8 +145,8 @@ public class PanelReservas extends javax.swing.JPanel {
     }//GEN-LAST:event_reservasCancelarActionPerformed
 
     private void reservasListado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasListado1ActionPerformed
-        ListadoReservas listado = new ListadoReservas();
-        listado.setVisible(true);
+        ListadoReservas frame = new ListadoReservas();
+        frame.setVisible(true);
     }//GEN-LAST:event_reservasListado1ActionPerformed
 
 

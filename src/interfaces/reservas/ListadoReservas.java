@@ -4,17 +4,17 @@
  */
 package interfaces.reservas;
 
-import com.clases.Habitacion;
 import com.clases.Reserva;
 import com.clases.SystemManager;
+import interfaces.panelHabitaciones.ElementoHabitacion;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import javax.swing.DefaultListModel;
 
 /**
  *
- * @author Nicolás Vera
+ * @author Lucas
  */
 public class ListadoReservas extends javax.swing.JFrame {
 
@@ -22,25 +22,27 @@ public class ListadoReservas extends javax.swing.JFrame {
      * Creates new form ListadoReservas
      */
     public ListadoReservas() {
-        initComponents();
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        ArrayList<Reserva> lista = new ArrayList();
-        try{
-            lista = SystemManager.leerJson("src/json/reserva.json", Reserva.class);
-            if(!lista.isEmpty()){
-                for(Reserva r : lista){
-                    System.out.println(r.toString());
-                    listadoReservas.add(new ElementosReserva(r.toString()));
-                }
-                
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
         
+        initComponents();
+        cargarReservas();
+        this.repaint();
         
     }
-
+    
+    private void cargarReservas(){
+        ArrayList<Reserva> reservas= new ArrayList<>();
+        try{
+            reservas=SystemManager.leerJson("src/json/reserva.json", Reserva.class);
+            DefaultListModel<String> listModel= new DefaultListModel<>();
+            for(Reserva r : reservas){
+                listModel.addElement("HABITACION: " + r.getHabitacion() + "    " + "CheckIn: " + r.getFechaEntrada()+ "    " + "CheckOut: " + r.getFechaSalida());
+            }
+            listadoReservas.setModel(listModel);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,30 +52,46 @@ public class ListadoReservas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        listadoReservas = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listadoReservas = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(400, 400));
+        setResizable(false);
 
-        javax.swing.GroupLayout listadoReservasLayout = new javax.swing.GroupLayout(listadoReservas);
-        listadoReservas.setLayout(listadoReservasLayout);
-        listadoReservasLayout.setHorizontalGroup(
-            listadoReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 286, Short.MAX_VALUE)
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("LISTADO DE RESERVAS");
+
+        jScrollPane2.setViewportView(listadoReservas);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
-        listadoReservasLayout.setVerticalGroup(
-            listadoReservasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 206, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listadoReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(listadoReservas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -113,10 +131,11 @@ public class ListadoReservas extends javax.swing.JFrame {
             }
         });
     }
-    
- 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel listadoReservas;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<String> listadoReservas;
     // End of variables declaration//GEN-END:variables
 }

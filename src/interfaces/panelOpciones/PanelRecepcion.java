@@ -34,10 +34,8 @@ public class PanelRecepcion extends javax.swing.JPanel {
         panelRecepcion = new javax.swing.JPanel();
         recepcionIngresarPax = new javax.swing.JButton();
         recepcionEgresarPax = new javax.swing.JButton();
-        recepcionIngresarAdicional = new javax.swing.JButton();
         recepcionCambiarHab = new javax.swing.JButton();
         recepcionModEgreso = new javax.swing.JButton();
-        recepcionModHab = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,8 +56,6 @@ public class PanelRecepcion extends javax.swing.JPanel {
             }
         });
 
-        recepcionIngresarAdicional.setText("Ingresar pax adicional");
-
         recepcionCambiarHab.setText("Cambiar de habitacion");
 
         recepcionModEgreso.setText("Modificar egreso");
@@ -68,8 +64,6 @@ public class PanelRecepcion extends javax.swing.JPanel {
                 recepcionModEgresoActionPerformed(evt);
             }
         });
-
-        recepcionModHab.setText("Modificar habitacion");
 
         jLabel1.setBackground(new java.awt.Color(153, 153, 153));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,9 +75,7 @@ public class PanelRecepcion extends javax.swing.JPanel {
         panelRecepcionLayout.setHorizontalGroup(
             panelRecepcionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(recepcionModEgreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(recepcionModHab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(recepcionCambiarHab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-            .addComponent(recepcionIngresarAdicional, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(recepcionIngresarPax, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(recepcionEgresarPax, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -97,17 +89,13 @@ public class PanelRecepcion extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(recepcionEgresarPax)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(recepcionIngresarAdicional)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(recepcionCambiarHab)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(recepcionModEgreso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(recepcionModHab)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
-        add(panelRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(panelRecepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 300));
     }// </editor-fold>//GEN-END:initComponents
 
     private void recepcionIngresarPaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recepcionIngresarPaxActionPerformed
@@ -133,9 +121,7 @@ public class PanelRecepcion extends javax.swing.JPanel {
     private javax.swing.JPanel panelRecepcion;
     private javax.swing.JButton recepcionCambiarHab;
     private javax.swing.JButton recepcionEgresarPax;
-    private javax.swing.JButton recepcionIngresarAdicional;
     private javax.swing.JButton recepcionIngresarPax;
     private javax.swing.JButton recepcionModEgreso;
-    private javax.swing.JButton recepcionModHab;
     // End of variables declaration//GEN-END:variables
 }

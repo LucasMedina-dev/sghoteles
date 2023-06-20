@@ -26,7 +26,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
+          <AbsoluteConstraints x="0" y="0" width="-1" height="300"/>
         </Constraint>
       </Constraints>
 
@@ -34,9 +34,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="recepcionModEgreso" alignment="0" max="32767" attributes="0"/>
-              <Component id="recepcionModHab" alignment="0" max="32767" attributes="0"/>
               <Component id="recepcionCambiarHab" alignment="1" pref="200" max="32767" attributes="0"/>
-              <Component id="recepcionIngresarAdicional" alignment="0" max="32767" attributes="0"/>
               <Component id="recepcionIngresarPax" max="32767" attributes="0"/>
               <Component id="recepcionEgresarPax" alignment="0" max="32767" attributes="0"/>
               <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
@@ -51,14 +49,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="recepcionEgresarPax" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="recepcionIngresarAdicional" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="recepcionCambiarHab" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="recepcionModEgreso" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="recepcionModHab" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="163" max="32767" attributes="0"/>
+                  <EmptySpace pref="141" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -80,11 +74,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recepcionEgresarPaxActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="recepcionIngresarAdicional">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ingresar pax adicional"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="recepcionCambiarHab">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cambiar de habitacion"/>
@@ -97,11 +86,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recepcionModEgresoActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="recepcionModHab">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Modificar habitacion"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>

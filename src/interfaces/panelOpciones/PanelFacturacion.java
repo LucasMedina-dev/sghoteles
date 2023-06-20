@@ -89,10 +89,10 @@ public class PanelFacturacion extends javax.swing.JPanel {
                 .addComponent(reservasQuitarCargo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(reservasCobroParcial)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
-        add(panelFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        add(panelFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 300));
     }// </editor-fold>//GEN-END:initComponents
 
     private void reservasCobrarHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasCobrarHabActionPerformed
