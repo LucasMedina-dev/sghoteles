@@ -1,10 +1,15 @@
 package com.clases;
 
-public class Cargo {
+import java.io.Serializable;
+
+public class Cargo implements Serializable{
     private Integer recargo;
     private String motivo;
     private String usuario;
-
+    
+    public Cargo(){
+        
+    }
     public Cargo(Integer recargo, String motivo, String usuario) {
         this.recargo = recargo;
         this.motivo = motivo;

@@ -51,10 +51,14 @@ public class LimpiarReservas extends javax.swing.JFrame {
         });
 
         jButton2.setText("Cancelar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setText("Atencion!\n\nEstá por borrar las reservas anteriores al\ndia en curso. ");
@@ -108,6 +112,10 @@ public class LimpiarReservas extends javax.swing.JFrame {
     private void borrarReservasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_borrarReservasActionPerformed
         eliminarReservasAnteriores();
     }//GEN-LAST:event_borrarReservasActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
     
     public static void eliminarReservasAnteriores() {
         // Obtener la fecha actual

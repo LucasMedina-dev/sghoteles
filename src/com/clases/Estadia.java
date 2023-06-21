@@ -1,5 +1,6 @@
 package com.clases;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -7,7 +8,9 @@ public class Estadia implements Serializable{
     private Cliente cliente;
     private String checkIn;
     private String checkOut;
+    @JsonDeserialize(as=ArrayList.class, contentAs=Factura.class)
     private ArrayList<Factura> pagos;
+    @JsonDeserialize(as=ArrayList.class, contentAs=Cargo.class)
     private ArrayList<Cargo> cargos;
     private String usuario;
     private Integer montoDiario;
@@ -18,8 +21,6 @@ public class Estadia implements Serializable{
         this.cliente = cliente;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
-        this.pagos = null;
-        this.cargos = null;
         this.usuario = usuario;
         this.montoDiario=montoDiario;
     }

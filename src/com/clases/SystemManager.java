@@ -31,7 +31,46 @@ public class SystemManager {
     
     public SystemManager(){
     }
-    
+    public static void crearFactura(Factura factura) throws IOException{
+        try{
+            ArrayList<Factura> facturas= leerJson("src/json/caja.json", Factura.class);
+            if(factura!=null){
+                facturas.add(factura);
+            }
+            persistirLista(facturas, "src/json/caja.json");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
+    public static Habitacion buscarHabitacion(String nroHab){
+        Habitacion habitacion=null;
+        try{
+            ArrayList<Habitacion> habitaciones= SystemManager.leerJson("src/json/habitaciones.json", Habitacion.class);
+            for(Habitacion h : habitaciones){
+                if(h.getNumHab().equals(nroHab)){
+                    habitacion=h;
+                    break;
+                }
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return habitacion;
+    }
+    public static void modificarEstadia(Habitacion habitacion){
+        try{
+            ArrayList<Habitacion> habitaciones= SystemManager.leerJson("src/json/habitaciones.json", Habitacion.class);
+            for(Habitacion h : habitaciones){
+                if(h.getNumHab().equals(habitacion.getNumHab())){
+                    h.setEstadia(habitacion.getEstadia());
+                    break;
+                }
+            }
+            persistirLista(habitaciones, "src/json/habitaciones.json");
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+    }
     public static void ocuparHabitacion(Estadia estadia, String nroHab){
         ArrayList<Habitacion> habitaciones;
         
@@ -41,7 +80,6 @@ public class SystemManager {
                 if(h.getNumHab().equals(nroHab) && h.getEstado().equals(Estado.libre)){
                     h.setEstadia(estadia);
                     h.setEstado(Estado.ocupada);
-                    //persistirLista(habitaciones, "src/json/habitaciones.json");
                     break;
                 }
             }
@@ -61,6 +99,7 @@ public class SystemManager {
                     if(cliente.getDni().equals(c.getDni())){
                         existe=true;
                         c=cliente; // se actualiza si existe
+                        break;
                     }
                 }
             }catch(Exception e){
@@ -158,6 +197,7 @@ public class SystemManager {
             for(Habitacion h : habitaciones){
                 if(h.getNumHab().equals(nroHab)){
                     est=h.getEstadia();
+                    break;
                 }
             }
         }catch(IOException e){
@@ -174,8 +214,8 @@ public class SystemManager {
             for(Reserva r: reservas){
                 for(Habitacion h : habitaciones){
                     if(r.getHabitacion().equals(h.getNumHab())){
-                        System.out.println(r.getFechaEntrada());
                         h.setNextIn(r.getFechaEntrada());
+                        break;
                     }
                 }
                 
@@ -192,6 +232,7 @@ public class SystemManager {
         for(Reserva reserva : reservas){
             if(reserva.getHabitacion().equals(habNum)){
                 nextInData= reserva.getFechaEntrada();
+                break;
             }
         }
         
@@ -200,8 +241,7 @@ public class SystemManager {
     public static int calcularDiferenciaDias(LocalDate checkIn, LocalDate checkOut) {
 
         // Calcula la diferencia de días
-        int diferencia = (int)ChronoUnit.DAYS.between(checkIn, checkOut);
-
+        int diferencia = Math.abs((int)ChronoUnit.DAYS.between(checkIn, checkOut));
         return diferencia;
     }
     private static ArrayList<Reserva> getReservas() {
@@ -248,11 +288,7 @@ public class SystemManager {
         ArrayList<Reserva> reservas = new ArrayList<>();
         try {
             reservas = SystemManager.leerJson("src/json/reserva.json", Reserva.class);
-            //System.out.println("Antes de borrar" + reservas.size());
-            borrarReserva(reservas, reserva); // Elimina la reserva del ArrayList original
-            //System.out.println("Despues de borrar" + reservas.size());
-            
-            
+            borrarReserva(reservas, reserva); // Elimina la reserva del ArrayList original           
             reservasUsadas = SystemManager.leerJson("src/json/reservasUsadas.json", Reserva.class);
             reservasUsadas.add(reserva);
             SystemManager.persistirLista(reservas, "src/json/reserva.json"); // Actualizar el archivo JSON original
@@ -295,8 +331,7 @@ public class SystemManager {
         boolean validacion=false;
         ArrayList<Usuario> usuarios= leerJson(path, Usuario.class);
         validacion = validarUsuario(usuarios, usuarioIngresado);
-       
-        return true; // tiene que retornar validacion!!!!
+        return validacion; // tiene que retornar validacion!!!!
     }
     public static boolean validarUsuario(ArrayList<Usuario> usuarios, Usuario uB){
         boolean validacion=false;

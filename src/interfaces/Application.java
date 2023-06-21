@@ -42,6 +42,7 @@ public class Application extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         recepcion = new javax.swing.JButton();
+        facturacion = new javax.swing.JButton();
         reservas = new javax.swing.JButton();
         administracion = new javax.swing.JButton();
         cerrarSesion = new javax.swing.JButton();
@@ -66,6 +67,7 @@ public class Application extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 700));
+        setResizable(false);
         setSize(new java.awt.Dimension(800, 700));
 
         background.setBackground(java.awt.Color.black);
@@ -94,13 +96,21 @@ public class Application extends javax.swing.JFrame {
         });
         leftPanel.add(recepcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 57, 200, -1));
 
+        facturacion.setText("FACTURACION");
+        facturacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mostrarFacturacion(evt);
+            }
+        });
+        leftPanel.add(facturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 200, -1));
+
         reservas.setText("RESERVAS");
         reservas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mostrarReservas(evt);
             }
         });
-        leftPanel.add(reservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 200, -1));
+        leftPanel.add(reservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, -1));
 
         administracion.setText("ADMINISTRACION");
         administracion.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +118,7 @@ public class Application extends javax.swing.JFrame {
                 mostrarAdministracion(evt);
             }
         });
-        leftPanel.add(administracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, -1));
+        leftPanel.add(administracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 200, -1));
 
         cerrarSesion.setText("Cerrar sesion");
         leftPanel.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 200, -1));
@@ -128,7 +138,7 @@ public class Application extends javax.swing.JFrame {
         );
 
         leftPanel.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 209, 200, -1));
-        leftPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 153, 200, 50));
+        leftPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 200, 50));
 
         jButton1.setText("Recargar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -167,9 +177,9 @@ public class Application extends javax.swing.JFrame {
         mostrarPanel(pReservas);
     }//GEN-LAST:event_mostrarReservas
 
-    private void mostrarRecepcion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarRecepcion
-        mostrarPanel(pRecepcion);
-    }//GEN-LAST:event_mostrarRecepcion
+    private void mostrarFacturacion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarFacturacion
+        mostrarPanel(pFacturacion);
+    }//GEN-LAST:event_mostrarFacturacion
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
@@ -182,6 +192,10 @@ public class Application extends javax.swing.JFrame {
             Logger.getLogger(Application.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void mostrarRecepcion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarRecepcion
+        mostrarPanel(pRecepcion);
+    }//GEN-LAST:event_mostrarRecepcion
 
     private void mostrarPanel(JPanel panel){
         panelOpciones.removeAll();
@@ -213,6 +227,7 @@ public class Application extends javax.swing.JFrame {
     private javax.swing.JButton administracion;
     private javax.swing.JPanel background;
     private javax.swing.JButton cerrarSesion;
+    private javax.swing.JButton facturacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;

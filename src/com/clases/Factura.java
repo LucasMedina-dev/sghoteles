@@ -1,14 +1,19 @@
 package com.clases;
 
-public class Factura {
-    private Integer nroFac;
+import java.io.Serializable;
+
+public class Factura implements Serializable {
+    private String nroFac;
     private Integer monto;
     private String tipoFac;
     private String fecha;
     private String comentario;
     private String usuario;
 
-    public Factura(Integer nroFac, Integer monto, String tipoFac, String fecha, String comentario, String usuario) {
+    public Factura(){
+        
+    }
+    public Factura(String nroFac, Integer monto, String tipoFac, String fecha, String comentario, String usuario) {
         this.nroFac = nroFac;
         this.monto = monto;
         this.tipoFac = tipoFac;
@@ -17,11 +22,11 @@ public class Factura {
         this.usuario = usuario;
     }
 
-    public Integer getNroFac() {
+    public String getNroFac() {
         return nroFac;
     }
 
-    public void setNroFac(Integer nroFac) {
+    public void setNroFac(String nroFac) {
         this.nroFac = nroFac;
     }
 

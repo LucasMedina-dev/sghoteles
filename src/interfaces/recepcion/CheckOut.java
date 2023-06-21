@@ -231,18 +231,24 @@ public class CheckOut extends javax.swing.JFrame {
             out=LocalDate.parse(est.getCheckOut());
             fechaIn.setText(in.toString());
             fechaOut.setText(out.toString());
-            int cantDias=SystemManager.calcularDiferenciaDias(in, out);
+            int cantDias=SystemManager.calcularDiferenciaDias(in, LocalDate.now());
             int montoDiario= (int)est.getMontoDiario();
             int cargos=0;
             int pagos=0;
             if(est.getCargos()!=null){
                 for(Cargo c : est.getCargos()){
-                    cargos+=c.getRecargo();
+                    if(c.getRecargo()!=null){
+                        cargos+=c.getRecargo();
+                    }
+                    
                 }
             }
             if(est.getPagos()!=null){
                 for(Factura f : est.getPagos()){
-                    pagos+=f.getMonto();
+                    
+                    if(f.getMonto()!=null){
+                        pagos+=f.getMonto();
+                    }
                 }
             }
             int montoTotal= (cantDias * montoDiario) + cargos - pagos;

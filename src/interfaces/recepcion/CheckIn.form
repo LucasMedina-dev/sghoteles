@@ -142,18 +142,30 @@
             </Component>
             <Component class="javax.swing.JTextField" name="ddin">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" value="DD"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="ddinFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="mmin">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" value="MM"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="mminFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="aaaain">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="text" type="java.lang.String" value="AAAA"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aaaainFocusGained"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -220,16 +232,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="DD"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="ddoutFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="mmout">
               <Properties>
                 <Property name="text" type="java.lang.String" value="MM"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="mmoutFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="aaaaout">
               <Properties>
                 <Property name="text" type="java.lang.String" value="AAAA"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="aaaaoutFocusGained"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>

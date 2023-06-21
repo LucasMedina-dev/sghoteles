@@ -262,52 +262,43 @@ public class CrearReservaFrame extends javax.swing.JFrame {
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
 
         try {
-            
-        Reserva res=null;
-        Integer id= Integer.parseInt(documento.getText().substring(documento.getText().length()-4));
-        String nroHab= (String) habNum.getSelectedItem().toString();
-        LocalDate fechaEntrada= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
-        LocalDate fechaSalida= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
-        String nom= nombre.getText();
-        String ape= apellido.getText();
-        String tel=telefono.getText();
-        
+            Reserva res=null;
+            Integer id= Integer.parseInt(documento.getText().substring(documento.getText().length()-4));
+            String nroHab= (String) habNum.getSelectedItem().toString();
+            LocalDate fechaEntrada= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
+            LocalDate fechaSalida= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
+            String nom= nombre.getText();
+            String ape= apellido.getText();
+            String tel=telefono.getText();
             ArrayList<Reserva> lista = new ArrayList<>();
             lista = SystemManager.leerJson("src/json/reserva.json", Reserva.class);
-        
-        if(!lista.isEmpty()){
-            for(Reserva r : lista){
-                    if(r.getHabitacion().equals(nroHab)){
-                        LocalDate in = LocalDate.parse(r.getFechaEntrada());
-                        LocalDate out = LocalDate.parse(r.getFechaSalida());
-                       
-                        if(((in.isAfter(fechaSalida)|| in.isBefore(fechaEntrada) && (out.isBefore(fechaEntrada)|| out.isAfter(fechaSalida))))){
+            if(!lista.isEmpty() && fechaEntrada.isAfter(LocalDate.now()) || fechaEntrada.isEqual(LocalDate.now())){
+                for(Reserva r : lista){
+                        if(r.getHabitacion().equals(nroHab)){
+                            LocalDate in = LocalDate.parse(r.getFechaEntrada());
+                            LocalDate out = LocalDate.parse(r.getFechaSalida());
+
+                            if(((in.isAfter(fechaSalida)|| in.isBefore(fechaEntrada) && (out.isBefore(fechaEntrada)|| out.isAfter(fechaSalida))))){
+                                res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel,documento.getText());
+                                SystemManager.crearReserva(res);
+                                SystemManager.crearCliente(new Cliente(nom, ape, tel, documento.getText()));
+                                break;
+                            }else{
+                                Alerta alert = new Alerta("Hay conflicto de fechas");
+                               break;
+                            }
+                        }else{
                             res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel,documento.getText());
                             SystemManager.crearReserva(res);
                             SystemManager.crearCliente(new Cliente(nom, ape, tel, documento.getText()));
                             break;
-                        }else{
-                            Alerta alert = new Alerta("Hay conflicto de fechas");
-                           break;
                         }
-                    }else{
-                      
-                        res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel,documento.getText());
-                        SystemManager.crearReserva(res);
-                        SystemManager.crearCliente(new Cliente(nom, ape, tel, documento.getText()));
-                        break;
-                    }
+                }
+            }else if(fechaEntrada.isAfter(LocalDate.now()) || fechaEntrada.isEqual(LocalDate.now())){
+                res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel,documento.getText());
+                SystemManager.crearReserva(res);
+                SystemManager.crearCliente(new Cliente(nom, ape, tel, documento.getText()));
             }
-        }else{
-            res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel,documento.getText());
-            SystemManager.crearReserva(res);
-            SystemManager.crearCliente(new Cliente(nom, ape, tel, documento.getText()));
-              
-        }
-        
-        
-        
-            
             this.dispose();
         }catch(IOException e){
             Alerta alerta= new Alerta("Error al crear reserva, verifique las fechas");

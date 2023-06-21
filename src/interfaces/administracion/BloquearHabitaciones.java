@@ -139,7 +139,6 @@ public class BloquearHabitaciones extends javax.swing.JFrame {
         // se puede pasar solo a libre si la habitacion solo esta en mantenimiento y viceversa.
         // la habitacion debe existir
         Boolean habitacion = false;
-        Boolean eleccion = true;
         ArrayList<Habitacion> lista;
         try{
             lista = SystemManager.leerJson("src/json/habitaciones.json", Habitacion.class);
@@ -150,19 +149,14 @@ public class BloquearHabitaciones extends javax.swing.JFrame {
                             h.setEstado(estado);
                             habitacion = true;
                             break;
-                        }else{
-                            eleccion = false;
                         }   
                     }
                 }
                 
                 if(!habitacion){
-                    Alerta alerta = new Alerta("La Habitacion NO Existe!!");
+                    Alerta alerta = new Alerta("Verifique los datos ingresados");
                 }else{
                     this.dispose();
-                }
-                if(!eleccion){
-                    Alerta alerta1 = new Alerta("Seleccione un estado!!");
                 }
                 SystemManager.persistirLista(lista, "src/json/habitaciones.json");
                

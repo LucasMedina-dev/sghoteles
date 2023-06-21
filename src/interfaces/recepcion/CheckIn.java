@@ -33,7 +33,11 @@ public class CheckIn extends javax.swing.JFrame {
     public CheckIn() {
         initComponents();
         SystemManager.centerApp(this);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Operacion para cerrar        
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Operacion para cerrar
+        LocalDate now= LocalDate.now();
+        ddin.setText(String.valueOf(now.getDayOfMonth()));
+        mmin.setText(String.valueOf(now.getMonth().getValue()));
+        aaaain.setText(String.valueOf(now.getYear()));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -94,11 +98,29 @@ public class CheckIn extends javax.swing.JFrame {
 
         jLabel11.setText("CheckIn");
 
+        ddin.setEditable(false);
         ddin.setText("DD");
+        ddin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ddinFocusGained(evt);
+            }
+        });
 
+        mmin.setEditable(false);
         mmin.setText("MM");
+        mmin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mminFocusGained(evt);
+            }
+        });
 
+        aaaain.setEditable(false);
         aaaain.setText("AAAA");
+        aaaain.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aaaainFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -135,10 +157,25 @@ public class CheckIn extends javax.swing.JFrame {
         modelHab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ESTANDAR", "ESPECIAL" }));
 
         ddout.setText("DD");
+        ddout.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                ddoutFocusGained(evt);
+            }
+        });
 
         mmout.setText("MM");
+        mmout.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mmoutFocusGained(evt);
+            }
+        });
 
         aaaaout.setText("AAAA");
+        aaaaout.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                aaaaoutFocusGained(evt);
+            }
+        });
 
         jLabel12.setText("CheckOut");
 
@@ -245,7 +282,7 @@ public class CheckIn extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setReserva(Reserva res){
-        LocalDate fechaIn= LocalDate.parse(res.getFechaEntrada());
+        LocalDate fechaIn= LocalDate.now();
         LocalDate fechaOut= LocalDate.parse(res.getFechaSalida());
         habNumber.setSelectedItem(res.getHabitacion());
         //modelHab.setSelectedItem(res.getTipoHab().toUpperCase());
@@ -271,7 +308,7 @@ public class CheckIn extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-       Cliente cliente= new Cliente(nombre.getText(), apellido.getText(), documento.getText(), telefono.getText(), email.getText(), domicilio.getText(), ciudad.getText(), nacionalidad.getText());
+        Cliente cliente= new Cliente(nombre.getText(), apellido.getText(), documento.getText(), telefono.getText(), email.getText(), domicilio.getText(), ciudad.getText(), nacionalidad.getText());
         SystemManager.crearCliente(cliente);
         LocalDate fechaEntrada= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
         LocalDate fechaSalida= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
@@ -281,23 +318,46 @@ public class CheckIn extends javax.swing.JFrame {
             for(Habitacion h : habitaciones){
                 if(habNumber.getSelectedItem().toString().equals(h.getNumHab()) && h.getEstado().equals(Estado.libre)){
                     montoDiario=h.getMontoDiario();
-                    break;
-                    
-                }else{
-                    Alerta alerta = new Alerta("Habitacion NO disponible");
+                    Estadia estadia= new Estadia(cliente, fechaEntrada.toString(), fechaSalida.toString(), "usuario",montoDiario );
+                    SystemManager.ocuparHabitacion(estadia, habNumber.getSelectedItem().toString());
+                    if(res!=null){
+                        SystemManager.usarReserva(res);
+                    }
+                    Alerta alerta = new Alerta("Ingresado");
                     break;
                 }
             }
         } catch (IOException ex) {
             Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Estadia estadia= new Estadia(cliente, fechaEntrada.toString(), fechaSalida.toString(), "usuario",montoDiario );
-        SystemManager.ocuparHabitacion(estadia, habNumber.getSelectedItem().toString());
-        if(res!=null){
-            SystemManager.usarReserva(res);
-        }
+        
+        
         this.dispose();
     }//GEN-LAST:event_aceptarActionPerformed
+
+    private void ddinFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ddinFocusGained
+        ddin.setText("");
+    }//GEN-LAST:event_ddinFocusGained
+
+    private void mminFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mminFocusGained
+        mmin.setText("");
+    }//GEN-LAST:event_mminFocusGained
+
+    private void aaaainFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aaaainFocusGained
+        aaaain.setText("");
+    }//GEN-LAST:event_aaaainFocusGained
+
+    private void ddoutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ddoutFocusGained
+        ddout.setText("");
+    }//GEN-LAST:event_ddoutFocusGained
+
+    private void mmoutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mmoutFocusGained
+        mmout.setText("");
+    }//GEN-LAST:event_mmoutFocusGained
+
+    private void aaaaoutFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_aaaaoutFocusGained
+        aaaaout.setText("");
+    }//GEN-LAST:event_aaaaoutFocusGained
     
     public Reserva getRes() {
         return res;
