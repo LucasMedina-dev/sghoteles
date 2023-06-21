@@ -39,8 +39,6 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="reservasQuitarCargo" alignment="0" max="32767" attributes="0"/>
-              <Component id="reservasAniadirCargo" alignment="0" max="32767" attributes="0"/>
               <Component id="reservasCobrarHab" alignment="0" pref="200" max="32767" attributes="0"/>
               <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -51,11 +49,7 @@
                   <Component id="jLabel1" min="-2" pref="31" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="reservasCobrarHab" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="reservasAniadirCargo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="reservasQuitarCargo" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="170" max="32767" attributes="0"/>
+                  <EmptySpace pref="228" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -67,22 +61,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reservasCobrarHabActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="reservasAniadirCargo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="A&#xf1;adir cargos"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reservasAniadirCargoActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="reservasQuitarCargo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Quitar cargos"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reservasQuitarCargoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">

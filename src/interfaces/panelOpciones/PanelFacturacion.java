@@ -22,8 +22,6 @@ public class PanelFacturacion extends javax.swing.JPanel {
 
         panelFacturacion = new javax.swing.JPanel();
         reservasCobrarHab = new javax.swing.JButton();
-        reservasAniadirCargo = new javax.swing.JButton();
-        reservasQuitarCargo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(200, 300));
@@ -39,20 +37,6 @@ public class PanelFacturacion extends javax.swing.JPanel {
             }
         });
 
-        reservasAniadirCargo.setText("Añadir cargos");
-        reservasAniadirCargo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reservasAniadirCargoActionPerformed(evt);
-            }
-        });
-
-        reservasQuitarCargo.setText("Quitar cargos");
-        reservasQuitarCargo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                reservasQuitarCargoActionPerformed(evt);
-            }
-        });
-
         jLabel1.setBackground(new java.awt.Color(153, 153, 153));
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -62,8 +46,6 @@ public class PanelFacturacion extends javax.swing.JPanel {
         panelFacturacion.setLayout(panelFacturacionLayout);
         panelFacturacionLayout.setHorizontalGroup(
             panelFacturacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(reservasQuitarCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(reservasAniadirCargo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(reservasCobrarHab, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -73,11 +55,7 @@ public class PanelFacturacion extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(reservasCobrarHab)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reservasAniadirCargo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reservasQuitarCargo)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(228, Short.MAX_VALUE))
         );
 
         add(panelFacturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 300));
@@ -88,20 +66,10 @@ public class PanelFacturacion extends javax.swing.JPanel {
         frame.setVisible(true);
     }//GEN-LAST:event_reservasCobrarHabActionPerformed
 
-    private void reservasAniadirCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasAniadirCargoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reservasAniadirCargoActionPerformed
-
-    private void reservasQuitarCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservasQuitarCargoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_reservasQuitarCargoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panelFacturacion;
-    private javax.swing.JButton reservasAniadirCargo;
     private javax.swing.JButton reservasCobrarHab;
-    private javax.swing.JButton reservasQuitarCargo;
     // End of variables declaration//GEN-END:variables
 }

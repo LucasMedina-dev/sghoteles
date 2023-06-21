@@ -14,6 +14,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
         initComponents();
         SystemManager.centerApp(this);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Operacion para cerrar   
+        
     }
 
     /**
@@ -34,8 +35,8 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         habText = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        nuevaHab = new javax.swing.JTextField();
+        habNumber = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         nombre = new javax.swing.JFormattedTextField();
         apellido = new javax.swing.JFormattedTextField();
@@ -104,13 +105,14 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Habitacion");
 
-        jLabel2.setText("Habitacion Nueva");
-
-        nuevaHab.addActionListener(new java.awt.event.ActionListener() {
+        habNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "114", "115", "116", "117", "118", "119", "120" }));
+        habNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevaHabActionPerformed(evt);
+                habNumberActionPerformed(evt);
             }
         });
+
+        jLabel3.setText("Habitacion nueva");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -121,20 +123,23 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(habText, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nuevaHab, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100))
+                .addGap(66, 66, 66)
+                .addComponent(jLabel3)
+                .addGap(30, 30, 30)
+                .addComponent(habNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel1)
-                .addComponent(habText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel2)
-                .addComponent(nuevaHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(habText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(habNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 400, -1));
@@ -264,7 +269,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
             mmout.setText(String.valueOf(fechaOut.getMonthValue()));
             aaaain.setText(String.valueOf(fechaIn.getYear()));
             aaaaout.setText(String.valueOf(fechaOut.getYear()));
-            
+            habNumber.setSelectedItem(reserva.getHabitacion());
         }else{
             resExiste.setText("No existe");
         }
@@ -275,10 +280,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
             //tomar todos los datos y guardarlo en un res
             LocalDate fechaIn= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
             LocalDate fechaOut= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
-            
-            if(nuevaHab != null){
-                  reserva.setHabitacion(nuevaHab.getText());
-            }
+            reserva.setHabitacion(habNumber.getSelectedItem().toString());
             Reserva res= new Reserva(reserva.getId(), reserva.getHabitacion(), fechaIn.toString(), fechaOut.toString(), nombre.getText(), apellido.getText(),  telefono.getText());
             
             // ejecutar buscaryreemplazar en systemmanager
@@ -289,9 +291,9 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_aceptarActionPerformed
 
-    private void nuevaHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaHabActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevaHabActionPerformed
+    private void habNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habNumberActionPerformed
+
+    }//GEN-LAST:event_habNumberActionPerformed
 
     /**
      * @param args the command line arguments
@@ -336,12 +338,13 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
     private javax.swing.JButton cancelar;
     private javax.swing.JTextField ddin;
     private javax.swing.JTextField ddout;
+    private javax.swing.JComboBox<String> habNumber;
     private javax.swing.JLabel habText;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -356,7 +359,6 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
     private javax.swing.JTextField mmout;
     private javax.swing.JFormattedTextField nombre;
     private javax.swing.JFormattedTextField nroRes;
-    private javax.swing.JTextField nuevaHab;
     private javax.swing.JLabel resExiste;
     private javax.swing.JFormattedTextField telefono;
     // End of variables declaration//GEN-END:variables
