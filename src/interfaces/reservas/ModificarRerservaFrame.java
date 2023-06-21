@@ -34,6 +34,8 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         habText = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        nuevaHab = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         nombre = new javax.swing.JFormattedTextField();
         apellido = new javax.swing.JFormattedTextField();
@@ -102,7 +104,13 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Habitacion");
 
-        habText.setText("hab");
+        jLabel2.setText("Habitacion Nueva");
+
+        nuevaHab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevaHabActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -112,14 +120,21 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(habText)
-                .addGap(298, 298, 298))
+                .addComponent(habText, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(80, 80, 80)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nuevaHab, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(100, 100, 100))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel1)
-                .addComponent(habText))
+                .addComponent(habText, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel2)
+                .addComponent(nuevaHab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 400, -1));
@@ -242,6 +257,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
             nombre.setText(reserva.getNombre());
             apellido.setText(reserva.getApellido());
             telefono.setText(reserva.getTelefono());
+            
             ddin.setText(String.valueOf(fechaIn.getDayOfMonth()));
             ddout.setText(String.valueOf(fechaOut.getDayOfMonth()));
             mmin.setText(String.valueOf(fechaIn.getMonthValue()));
@@ -260,6 +276,9 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
             LocalDate fechaIn= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
             LocalDate fechaOut= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
             
+            if(nuevaHab != null){
+                  reserva.setHabitacion(nuevaHab.getText());
+            }
             Reserva res= new Reserva(reserva.getId(), reserva.getHabitacion(), fechaIn.toString(), fechaOut.toString(), nombre.getText(), apellido.getText(),  telefono.getText());
             
             // ejecutar buscaryreemplazar en systemmanager
@@ -267,7 +286,12 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }
+        this.dispose();
     }//GEN-LAST:event_aceptarActionPerformed
+
+    private void nuevaHabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaHabActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevaHabActionPerformed
 
     /**
      * @param args the command line arguments
@@ -317,6 +341,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -331,6 +356,7 @@ public class ModificarRerservaFrame extends javax.swing.JFrame {
     private javax.swing.JTextField mmout;
     private javax.swing.JFormattedTextField nombre;
     private javax.swing.JFormattedTextField nroRes;
+    private javax.swing.JTextField nuevaHab;
     private javax.swing.JLabel resExiste;
     private javax.swing.JFormattedTextField telefono;
     // End of variables declaration//GEN-END:variables

@@ -248,9 +248,9 @@ public class SystemManager {
         ArrayList<Reserva> reservas = new ArrayList<>();
         try {
             reservas = SystemManager.leerJson("src/json/reserva.json", Reserva.class);
-            System.out.println("Antes de borrar" + reservas.size());
+            //System.out.println("Antes de borrar" + reservas.size());
             borrarReserva(reservas, reserva); // Elimina la reserva del ArrayList original
-            System.out.println("Despues de borrar" + reservas.size());
+            //System.out.println("Despues de borrar" + reservas.size());
             
             
             reservasUsadas = SystemManager.leerJson("src/json/reservasUsadas.json", Reserva.class);

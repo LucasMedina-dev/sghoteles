@@ -105,8 +105,6 @@ public class BorrarReserva extends javax.swing.JFrame {
 
         jLabel1.setText("Habitacion");
 
-        habText.setText("hab");
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -116,7 +114,7 @@ public class BorrarReserva extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(habText)
-                .addContainerGap(298, Short.MAX_VALUE))
+                .addContainerGap(318, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,6 +249,7 @@ public class BorrarReserva extends javax.swing.JFrame {
             reservasEliminadas.add(reserva);
             SystemManager.persistirLista(reservas, "src/json/reserva.json"); // Actualizar el archivo JSON original
             SystemManager.persistirLista(reservasEliminadas, "src/json/reservasEliminadas.json");
+            this.dispose();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -259,7 +258,7 @@ public class BorrarReserva extends javax.swing.JFrame {
         Reserva borrar=null;
         try{
             for(Reserva r : reservas){
-                if(r.getId()==reserva.getId()){
+                if(r.getId().equals(reserva.getId())){
                     borrar=r;
                 }
             }

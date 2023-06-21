@@ -257,20 +257,23 @@ public class CheckOut extends javax.swing.JFrame {
         
         try{
             ArrayList<Habitacion> habitaciones=SystemManager.leerJson("src/json/habitaciones.json", Habitacion.class);
-            int index;
+            //int index;
+            
+            if(!habitaciones.isEmpty()){
+                
             for(Habitacion h: habitaciones){
-                if(h.getNumHab().equals(nroHab)&& h.getEstado().equals(Estado.ocupada)){
-                    
+                System.out.println(h.getNumHab());
+                System.out.println(nroHab);
+                if(h.getNumHab().equalsIgnoreCase(nroHab)){
+                    System.out.println("ACA");
                     h.setEstadia(null);
                     h.setEstado(Estado.libre);
                     SystemManager.persistirLista(habitaciones,"src/json/habitaciones.json");
-                    this.dispose();
                     Alerta alert = new Alerta("Pago ingresado con exito!!");
-                    break;
-                }else{
-                    Alerta alerta = new Alerta("La habitacion NO esta ocupada");
+                    this.dispose();
                     break;
                 }
+            }
             }
         }catch(IOException e){
             e.printStackTrace();

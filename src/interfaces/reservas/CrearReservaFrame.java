@@ -15,9 +15,10 @@ public class CrearReservaFrame extends javax.swing.JFrame {
      * Creates new form crearReservaFrame
      */
     public CrearReservaFrame() {
-        initComponents();
-        SystemManager.centerApp(this);
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Operacion para cerrar   
+            initComponents();
+            SystemManager.centerApp(this);
+            this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); // Operacion para cerrar 
+        
     }
 
     /**
@@ -47,6 +48,7 @@ public class CrearReservaFrame extends javax.swing.JFrame {
         mmout = new javax.swing.JTextField();
         aaaaout = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        tipoHab = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         nombre = new javax.swing.JFormattedTextField();
         apellido = new javax.swing.JFormattedTextField();
@@ -157,7 +159,9 @@ public class CrearReservaFrame extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(188, Short.MAX_VALUE)
+                .addGap(108, 108, 108)
+                .addComponent(tipoHab, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ddout, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,7 +176,8 @@ public class CrearReservaFrame extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addComponent(ddout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(mmout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(aaaaout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(aaaaout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tipoHab, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 400, -1));
@@ -246,10 +251,6 @@ public class CrearReservaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void habNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habNumActionPerformed
-        
-    }//GEN-LAST:event_habNumActionPerformed
-
     private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_apellidoActionPerformed
@@ -276,18 +277,13 @@ public class CrearReservaFrame extends javax.swing.JFrame {
         
         if(!lista.isEmpty()){
             for(Reserva r : lista){
-                System.out.println("aca seguro");
-                System.out.println(nroHab);
-                System.out.println(r.getHabitacion());
-               
                     if(r.getHabitacion().equals(nroHab)){
                         LocalDate in = LocalDate.parse(r.getFechaEntrada());
                         LocalDate out = LocalDate.parse(r.getFechaSalida());
-                        System.out.println("primer if");
+                       
                         if(((in.isAfter(fechaSalida)|| in.isBefore(fechaEntrada) && (out.isBefore(fechaEntrada)|| out.isAfter(fechaSalida))))){
-                            res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel);
+                            res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel,documento.getText());
                             SystemManager.crearReserva(res);
-                            System.out.println(res);
                             SystemManager.crearCliente(new Cliente(nom, ape, tel, documento.getText()));
                             break;
                         }else{
@@ -296,14 +292,14 @@ public class CrearReservaFrame extends javax.swing.JFrame {
                         }
                     }else{
                       
-                        res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel);
+                        res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel,documento.getText());
                         SystemManager.crearReserva(res);
                         SystemManager.crearCliente(new Cliente(nom, ape, tel, documento.getText()));
                         break;
                     }
             }
         }else{
-            res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel);
+            res=new Reserva(id, nroHab, fechaEntrada.toString(), fechaSalida.toString(), nom, ape, tel,documento.getText());
             SystemManager.crearReserva(res);
             SystemManager.crearCliente(new Cliente(nom, ape, tel, documento.getText()));
               
@@ -354,6 +350,10 @@ public class CrearReservaFrame extends javax.swing.JFrame {
             aaaaout.setText("");
         }
     }//GEN-LAST:event_aaaaoutFocusGained
+
+    private void habNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habNumActionPerformed
+
+    }//GEN-LAST:event_habNumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -419,5 +419,6 @@ public class CrearReservaFrame extends javax.swing.JFrame {
     private javax.swing.JTextField mmout;
     private javax.swing.JFormattedTextField nombre;
     private javax.swing.JFormattedTextField telefono;
+    private javax.swing.JLabel tipoHab;
     // End of variables declaration//GEN-END:variables
 }

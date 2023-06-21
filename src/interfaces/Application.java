@@ -43,7 +43,6 @@ public class Application extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         recepcion = new javax.swing.JButton();
         reservas = new javax.swing.JButton();
-        facturacion = new javax.swing.JButton();
         administracion = new javax.swing.JButton();
         cerrarSesion = new javax.swing.JButton();
         panelOpciones = new javax.swing.JPanel();
@@ -101,15 +100,7 @@ public class Application extends javax.swing.JFrame {
                 mostrarReservas(evt);
             }
         });
-        leftPanel.add(reservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 86, 200, -1));
-
-        facturacion.setText("FACTURACION");
-        facturacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mostrarFacturacion(evt);
-            }
-        });
-        leftPanel.add(facturacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 115, 200, -1));
+        leftPanel.add(reservas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 200, -1));
 
         administracion.setText("ADMINISTRACION");
         administracion.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +108,7 @@ public class Application extends javax.swing.JFrame {
                 mostrarAdministracion(evt);
             }
         });
-        leftPanel.add(administracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 144, 200, -1));
+        leftPanel.add(administracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 200, -1));
 
         cerrarSesion.setText("Cerrar sesion");
         leftPanel.add(cerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 620, 200, -1));
@@ -137,7 +128,7 @@ public class Application extends javax.swing.JFrame {
         );
 
         leftPanel.add(panelOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 209, 200, -1));
-        leftPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 185, 200, 18));
+        leftPanel.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 153, 200, 50));
 
         jButton1.setText("Recargar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +136,7 @@ public class Application extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        leftPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 580, -1, -1));
+        leftPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 560, -1, -1));
 
         background.add(leftPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 660));
 
@@ -171,10 +162,6 @@ public class Application extends javax.swing.JFrame {
     private void mostrarAdministracion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarAdministracion
         mostrarPanel(pAdmin);
     }//GEN-LAST:event_mostrarAdministracion
-
-    private void mostrarFacturacion(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarFacturacion
-        mostrarPanel(pFacturacion);
-    }//GEN-LAST:event_mostrarFacturacion
 
     private void mostrarReservas(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarReservas
         mostrarPanel(pReservas);
@@ -226,7 +213,6 @@ public class Application extends javax.swing.JFrame {
     private javax.swing.JButton administracion;
     private javax.swing.JPanel background;
     private javax.swing.JButton cerrarSesion;
-    private javax.swing.JButton facturacion;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;

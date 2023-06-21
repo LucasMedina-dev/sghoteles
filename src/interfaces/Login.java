@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 public class Login extends javax.swing.JFrame {
 
@@ -23,6 +24,9 @@ public class Login extends javax.swing.JFrame {
         int centerX=(int)screenData.getWidth()/2-(this.getWidth()/2);
         int centerY=(int)screenData.getHeight()/2-(this.getHeight()/2);
         this.setLocation(centerX, centerY);
+        
+        ImageIcon image = new ImageIcon("src/images/descarga.jpg");
+        this.image.setIcon(image);
         
     }
 
@@ -40,6 +44,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        image = new javax.swing.JLabel();
         LoginDiv = new javax.swing.JPanel();
         LoginTitle = new javax.swing.JLabel();
         userText = new javax.swing.JTextField();
@@ -67,11 +72,11 @@ public class Login extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(174, 214, 241));
         jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Roboto Medium", 0, 10)); // NOI18N
+        jTextArea1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(51, 51, 51));
         jTextArea1.setRows(5);
-        jTextArea1.setText("Argibel Franco\nAlvarez Facundo\nMedina Lucas\nLeoz Mauricio\nVera Nicolas");
-        jTextArea1.setBorder(null);
+        jTextArea1.setText("\tArgibel Franco\n\tAlvarez Facundo\n\tMedina Lucas\n\tLeoz Mauricio\n\tVera Nicolas");
+        jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jTextArea1.setDisabledTextColor(new java.awt.Color(51, 153, 255));
         jTextArea1.setFocusable(false);
@@ -82,17 +87,21 @@ public class Login extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(image, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(124, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(130, 130, 130)
+                .addGap(37, 37, 37)
+                .addComponent(image, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
@@ -250,6 +259,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel LoginTitle;
     private javax.swing.JPanel background;
     private javax.swing.JButton enter;
+    private javax.swing.JLabel image;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

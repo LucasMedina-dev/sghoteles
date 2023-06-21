@@ -25,7 +25,7 @@ public class ListadoReservas extends javax.swing.JFrame {
             reservas=SystemManager.leerJson("src/json/reserva.json", Reserva.class);
             DefaultListModel<String> listModel= new DefaultListModel<>();
             for(Reserva r : reservas){
-                listModel.addElement("ID: "+r.getId()+"       HABITACION: " + r.getHabitacion() + "    " + "      CheckIn: " + r.getFechaEntrada()+ "    " + "     CheckOut: " + r.getFechaSalida());
+                listModel.addElement("ID: "+r.getId()+"    Habitacion: " + r.getHabitacion() + "    Cliente: "+r.getNombre()+" "+r.getApellido()+ "                          CheckIn: " + r.getFechaEntrada()+ "    " + "    CheckOut: " + r.getFechaSalida());
             }
             listadoReservas.setModel(listModel);
         }catch(Exception e){

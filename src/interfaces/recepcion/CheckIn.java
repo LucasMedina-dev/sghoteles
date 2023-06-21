@@ -25,9 +25,10 @@ public class CheckIn extends javax.swing.JFrame {
         SystemManager.centerApp(this);
         Reserva res=SystemManager.buscarReserva(nroRes);
         setReserva(res);
+        
+        
         this.setRes(res);
-        Alerta alerta= new Alerta();
-        alerta.setVisible(true);
+        
     }
     public CheckIn() {
         initComponents();
@@ -250,12 +251,15 @@ public class CheckIn extends javax.swing.JFrame {
         //modelHab.setSelectedItem(res.getTipoHab().toUpperCase());
         nombre.setText(res.getNombre());
         apellido.setText(res.getApellido());
+        telefono.setText(res.getTelefono());
+        documento.setText(res.getDocumento());
         ddin.setText(String.valueOf(fechaIn.getDayOfMonth()));
         ddout.setText(String.valueOf(fechaOut.getDayOfMonth()));
         mmin.setText(String.valueOf(fechaIn.getMonthValue()));
         mmout.setText(String.valueOf(fechaOut.getMonthValue()));
         aaaain.setText(String.valueOf(fechaIn.getYear()));
         aaaaout.setText(String.valueOf(fechaOut.getYear()));
+        
     }
     
     private void habNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_habNumberActionPerformed
@@ -271,7 +275,7 @@ public class CheckIn extends javax.swing.JFrame {
         SystemManager.crearCliente(cliente);
         LocalDate fechaEntrada= LocalDate.of(Integer.parseInt(aaaain.getText()), Integer.parseInt(mmin.getText()), Integer.parseInt(ddin.getText()));
         LocalDate fechaSalida= LocalDate.of(Integer.parseInt(aaaaout.getText()), Integer.parseInt(mmout.getText()), Integer.parseInt(ddout.getText()));
-        int montoDiario=0;
+        int montoDiario=12500;
         try {
             ArrayList<Habitacion> habitaciones= SystemManager.leerJson("src/json/habitaciones.json", Habitacion.class);
             for(Habitacion h : habitaciones){
@@ -279,9 +283,6 @@ public class CheckIn extends javax.swing.JFrame {
                     montoDiario=h.getMontoDiario();
                     break;
                     
-                }else{
-                    Alerta alert = new Alerta("La habitacion NO existe o NO esta disponible");
-                    break;
                 }
             }
         } catch (IOException ex) {
@@ -292,6 +293,7 @@ public class CheckIn extends javax.swing.JFrame {
         if(res!=null){
             SystemManager.usarReserva(res);
         }
+        this.dispose();
     }//GEN-LAST:event_aceptarActionPerformed
     
     public Reserva getRes() {

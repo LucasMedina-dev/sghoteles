@@ -116,7 +116,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="habText" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="298" max="32767" attributes="0"/>
+                      <EmptySpace pref="318" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -134,9 +134,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="habText">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="hab"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
