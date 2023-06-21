@@ -283,6 +283,9 @@ public class CheckIn extends javax.swing.JFrame {
                     montoDiario=h.getMontoDiario();
                     break;
                     
+                }else{
+                    Alerta alerta = new Alerta("Habitacion NO disponible");
+                    break;
                 }
             }
         } catch (IOException ex) {

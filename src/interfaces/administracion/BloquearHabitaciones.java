@@ -127,12 +127,12 @@ public class BloquearHabitaciones extends javax.swing.JFrame {
 
     private void mantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoActionPerformed
         estado = Estado.mantenimiento;
-        System.out.println(estado);
+        
     }//GEN-LAST:event_mantenimientoActionPerformed
 
     private void libreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libreActionPerformed
         estado = Estado.libre;
-        System.out.println(estado);
+        
     }//GEN-LAST:event_libreActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

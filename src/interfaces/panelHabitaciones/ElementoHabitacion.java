@@ -17,7 +17,8 @@ public class ElementoHabitacion extends javax.swing.JPanel {
         if(hab.getEstado()==Estado.ocupada){
             habBackground.setBackground(Color.red);
         }else if(hab.getEstado()==Estado.mantenimiento){
-            habBackground.setBackground(Color.gray);
+            habBackground.setBackground(Color.orange);
+            
         }else{
             habBackground.setBackground(Color.green);
         }
